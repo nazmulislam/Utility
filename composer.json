@@ -9,9 +9,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "filp/whoops": "^2.15",
         "gettext/gettext": "^5.7",
-        "nesbot/carbon": "^2.72",
         "mikehaertl/phpwkhtmltopdf": "^2.5",
         "monolog/monolog": "^2.9",
         "guzzlehttp/guzzle": "^7.8",
@@ -23,7 +21,6 @@
         "chrome-php/chrome": "^1.9",
         "google/apiclient": "^2.12.1",
         "ulrichsg/getopt-php": "^4.0",
-        "spatie/laravel-ciphersweet": "^1.4",
         "davmixcool/php-sentiment-analyzer": "^1.2",
         "spatie/pdf-to-text": "^1.52",
         "mpdf/mpdf": "^8.2",
