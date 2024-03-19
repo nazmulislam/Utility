@@ -1,6 +1,9 @@
 <?php
+
 declare(strict_types=1);
+
 namespace NazmulIslam\Utility\Logger;
+
 use Monolog\Logger as MonoLogLogger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\BrowserConsoleHandler;
@@ -12,19 +15,19 @@ use Monolog\Handler\BrowserConsoleHandler;
  */
 class Logger implements LoggerInterface
 {
-    CONST LOG_PATH = __DIR__.'/../../../';
+    const LOG_PATH = __DIR__ . '/../../../../../';
     /**
      * DEBUG (100): Detailed debug information.
      * @param string $message
      * @param array $data
      */
-    public static function debug(string $message,array $data = [], string|null $logPath = null):void
+    public static function debug(string $message, array $data = [], string|null $logPath = null): void
     {
 
-       
+
         $logger = new MonoLogLogger('DEBUG');
-        $logger->pushHandler(new StreamHandler(self::LOG_PATH.($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::DEBUG));
-        $logger->debug($message,$data);
+        $logger->pushHandler(new StreamHandler(self::LOG_PATH . ($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::DEBUG));
+        $logger->debug($message, $data);
     }
 
     /**
@@ -32,11 +35,11 @@ class Logger implements LoggerInterface
      * @param string $message
      * @param array $data
      */
-    public static function info(string $message,string | array | null $data,string|null $logPath = null):void
+    public static function info(string $message, string | array | null $data, string|null $logPath = null): void
     {
         $logger = new MonoLogLogger('INFO');
-        $logger->pushHandler(new StreamHandler(self::LOG_PATH.($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::INFO));
-        $logger->info($message,$data);
+        $logger->pushHandler(new StreamHandler(self::LOG_PATH . ($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::INFO));
+        $logger->info($message, $data);
     }
 
     /**
@@ -44,11 +47,11 @@ class Logger implements LoggerInterface
      * @param string $message
      * @param array $data
      */
-    public static function notice(string $message,string | array | null $data,string|null $logPath = null):void
+    public static function notice(string $message, string | array | null $data, string|null $logPath = null): void
     {
         $logger = new MonoLogLogger('NOTICE');
-        $logger->pushHandler(new StreamHandler(self::LOG_PATH.($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::NOTICE));
-        $logger->notice($message,$data);
+        $logger->pushHandler(new StreamHandler(self::LOG_PATH . ($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::NOTICE));
+        $logger->notice($message, $data);
     }
 
     /**
@@ -56,11 +59,11 @@ class Logger implements LoggerInterface
      * @param string $message
      * @param array $data
      */
-    public static function warning(string $message,string | array | null $data,string|null $logPath = null):void
+    public static function warning(string $message, string | array | null $data, string|null $logPath = null): void
     {
         $logger = new MonoLogLogger('WARNING');
-        $logger->pushHandler(new StreamHandler(self::LOG_PATH.($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::WARNING));
-        $logger->warning($message,$data);
+        $logger->pushHandler(new StreamHandler(self::LOG_PATH . ($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::WARNING));
+        $logger->warning($message, $data);
     }
 
     /**
@@ -68,11 +71,11 @@ class Logger implements LoggerInterface
      * @param string $message
      * @param array $data
      */
-    public static function error(string $message, array $data = [], string|null $logPath = null):void
+    public static function error(string $message, array $data = [], string|null $logPath = null): void
     {
         $logger = new MonoLogLogger('ERROR');
-        $logger->pushHandler(new StreamHandler(self::LOG_PATH.($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::ERROR));
-        $logger->error($message,$data);
+        $logger->pushHandler(new StreamHandler(self::LOG_PATH . ($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::ERROR));
+        $logger->error($message, $data);
     }
 
     /**
@@ -82,11 +85,11 @@ class Logger implements LoggerInterface
      * @param string $message
      * @param array $data
      */
-    public static function critical(string $message, array $data = [], string|null $logPath = null ):void
+    public static function critical(string $message, array $data = [], string|null $logPath = null): void
     {
         $logger = new MonoLogLogger('CRITICAL');
-        $logger->pushHandler(new StreamHandler(self::LOG_PATH.($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::CRITICAL));
-        $logger->critical($message,$data);
+        $logger->pushHandler(new StreamHandler(self::LOG_PATH . ($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::CRITICAL));
+        $logger->critical($message, $data);
     }
 
     /**
@@ -94,11 +97,11 @@ class Logger implements LoggerInterface
      * @param string $message
      * @param array $data
      */
-    public static function alert(string $message, array $data = [], string|null $logPath = null):void
+    public static function alert(string $message, array $data = [], string|null $logPath = null): void
     {
         $logger = new MonoLogLogger('ALERT');
-        $logger->pushHandler(new StreamHandler(self::LOG_PATH.($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::ALERT));
-        $logger->alert($message,$data);
+        $logger->pushHandler(new StreamHandler(self::LOG_PATH . ($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::ALERT));
+        $logger->alert($message, $data);
     }
 
     /**
@@ -106,11 +109,11 @@ class Logger implements LoggerInterface
      * @param string $message
      * @param array $data
      */
-    public static function emergency(string $message, array $data = [], string|null $logPath = null):void
+    public static function emergency(string $message, array $data = [], string|null $logPath = null): void
     {
         $logger = new MonoLogLogger('EMERGENCY');
-        $logger->pushHandler(new StreamHandler(self::LOG_PATH.($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::EMERGENCY));
-        $logger->emergency($message,$data);
+        $logger->pushHandler(new StreamHandler(self::LOG_PATH . ($logPath ?? $_ENV['LOG_PATH']), MonoLogLogger::EMERGENCY));
+        $logger->emergency($message, $data);
     }
 
     /**
@@ -123,6 +126,5 @@ class Logger implements LoggerInterface
         $logger = new MonoLogLogger('GENERAL');
         $logger->pushHandler(new BrowserConsoleHandler(MonoLogLogger::EMERGENCY));
         $logger->emergency('Logger is now Ready');
-
     }
 }
