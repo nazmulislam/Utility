@@ -1,10 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace  NazmulIslam\Utility\Authentication;
 
 use Firebase\JWT\JWT;
-use App\Models\App\User;
 use NazmulIslam\Utility\Logger\Logger;
 
 /**
@@ -16,22 +16,23 @@ class Authentication
 {
 
     private $user;
-   
-    
-    public function setUser(User $user):void
+
+
+    public function setUser($user): void
     {
         $this->user = $user;
     }
     /**
      * Creates the access token
      */
-    public function createAccessToken(int $expiredAt):string {
-        
+    public function createAccessToken(int $expiredAt): string
+    {
+
         $key = $_ENV['ACCESS_TOKEN_SECRET'];
         $issuer =  (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
         Logger::debug($issuer);
         $issuedAt = time();
-        
+
         //Time until access token expires 15 minutes
         //$expiredAt = $issuedAt + ($minutes * $seconds);
         $payload = array(
@@ -39,21 +40,22 @@ class Authentication
             "iat" => $issuedAt,
             "exp" => $expiredAt,
             "userId" => $this->user->user_id,
-            
+
             "userType" => intval($this->user->user_type),
             "fullname" => $this->user->first_name . ' ' . $this->user->last_name,
             "firstname" => $this->user->first_name,
             "lastname" => $this->user->last_name,
         );
-        
-        $jwt =  JWT::encode($payload, $key,'HS256');
+
+        $jwt =  JWT::encode($payload, $key, 'HS256');
         return $jwt;
     }
 
     /**
      * Creates the refresh token
      */
-    public function createRefreshToken(int $expiredAt):string {
+    public function createRefreshToken(int $expiredAt): string
+    {
         $key = $_ENV['REFRESH_TOKEN_SECRET'];
         $issuer = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
         $issuedAt = time();
@@ -70,29 +72,30 @@ class Authentication
             "exp" => $expiredAt,
             "userId" => $this->user->user_id,
             "tokenVersion" => $this->user->refresh_token_count,
-            
+
             "userType" => intval($this->user->user_type),
             "fullname" => $this->user->first_name . ' ' . $this->user->last_name,
             "firstname" => $this->user->first_name,
             "lastname" => $this->user->last_name,
-            
+
         );
-        $jwt =  JWT::encode($payload, $key,'HS256');
+        $jwt =  JWT::encode($payload, $key, 'HS256');
         return $jwt;
     }
 
     /**
      * Sets refresh token in httponly cookie.
      */
-    public function sendRefreshToken() {
-        
-   
-                
-                //setcookie(name:'jid',value:$this->createRefreshToken(), expires_or_options:'',path:'/',domain:'',secure:true, httponly:true)
-//        setcookie('jid',$this->createRefreshToken(), [
-//           'httponly' => true,
-//           'secure' => true,
-//           'SameSite' => 'None' 
-//        ]);
+    public function sendRefreshToken()
+    {
+
+
+
+        //setcookie(name:'jid',value:$this->createRefreshToken(), expires_or_options:'',path:'/',domain:'',secure:true, httponly:true)
+        //        setcookie('jid',$this->createRefreshToken(), [
+        //           'httponly' => true,
+        //           'secure' => true,
+        //           'SameSite' => 'None' 
+        //        ]);
     }
 }
