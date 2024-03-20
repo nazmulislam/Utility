@@ -22,13 +22,25 @@ class Authentication
     {
         $this->user = $user;
     }
+
+    /**
+     * Generates a new access token if refresh token is still valid else
+     * if refresh token is invalid then they are effectively logged out.
+     */
+    public function createExpireToken(string $accessTokenExpiryTime)
+    {
+        $issuedAt = date_create();
+
+
+        date_add($issuedAt, date_interval_create_from_date_string($accessTokenExpiryTime));
+        return date_timestamp_get($issuedAt);
+    }
     /**
      * Creates the access token
      */
-    public function createAccessToken(int $expiredAt): string
+    public function createAccessToken(int $expiredAt, string $accessTokenSecret): string
     {
 
-        $key = $_ENV['ACCESS_TOKEN_SECRET'];
         $issuer =  (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
         Logger::debug($issuer);
         $issuedAt = time();
@@ -47,16 +59,16 @@ class Authentication
             "lastname" => $this->user->last_name,
         );
 
-        $jwt =  JWT::encode($payload, $key, 'HS256');
+        $jwt =  JWT::encode($payload, $$accessTokenSecret, 'HS256');
         return $jwt;
     }
 
     /**
      * Creates the refresh token
      */
-    public function createRefreshToken(int $expiredAt): string
+    public function createRefreshToken(int $expiredAt, string $refreshTokenSecret): string
     {
-        $key = $_ENV['REFRESH_TOKEN_SECRET'];
+
         $issuer = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
         $issuedAt = time();
         $seconds = 60;
@@ -79,7 +91,7 @@ class Authentication
             "lastname" => $this->user->last_name,
 
         );
-        $jwt =  JWT::encode($payload, $key, 'HS256');
+        $jwt =  JWT::encode($payload, $refreshTokenSecret, 'HS256');
         return $jwt;
     }
 
