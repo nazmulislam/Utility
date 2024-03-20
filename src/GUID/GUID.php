@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Utility\GUID;
+namespace NazmulIslam\Utility\GUID;
 
 /**
  * Description of Utility
@@ -11,7 +11,7 @@ namespace App\Utility\GUID;
  */
 class GUID
 {
-  
+
 
 
     static public function createGuidForTableIds($model, $field): string
@@ -38,9 +38,9 @@ class GUID
     }
 
 
-// Create GUID (Globally Unique Identifier)
+    // Create GUID (Globally Unique Identifier)
     function create_guid()
-    { 
+    {
         $guid = '';
         $namespace = rand(11111, 99999);
         $uid = uniqid('', true);
@@ -57,5 +57,4 @@ class GUID
             substr($hash, 20, 12);
         return $guid;
     }
-
 }
