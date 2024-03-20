@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace NazmulIslam\Utility\WebSocket;
 
 /**
@@ -9,12 +11,14 @@ namespace NazmulIslam\Utility\WebSocket;
  *
  * TODO: Need to refactor the send methods sendNotifications
  */
-class WebSocket {
+class WebSocket
+{
 
     const TYPE_INDICATOR = 1;
     const TYPE_ACTIVITY = 3;
 
-    public function sendNotifications(array $notifications) {
+    public function sendNotifications(array $notifications)
+    {
 
         foreach ($notifications as $notification) {
             switch ($notification['type']) {
@@ -30,11 +34,17 @@ class WebSocket {
         }
     }
 
+    public function sendWebsocketNotification(array $data)
+    {
+
+        $this->sendNotifications([$data]);
+    }
     /**
      * @param $options
      * Sends a specific notification, the data array will be different depending on what you want to send to the client.
      */
-    public function sendToastrIndicator(array $options) {
+    public function sendToastrIndicator(array $options)
+    {
         $data = [
             'type' => 'indicator',
             'user_ids' => $options['user_ids'] ?? $options['user_ids'] ?? [],
@@ -43,7 +53,8 @@ class WebSocket {
         $this->sendWebSocketRequest($data);
     }
 
-    public function sendErrorMessage($options) {
+    public function sendErrorMessage($options)
+    {
 
         $data = [
             'uri' => '/error/broadcast',
@@ -51,8 +62,9 @@ class WebSocket {
         ];
         $this->sendWebSocketRequest($data);
     }
-    
-    public function sendVideoUploadComplete(array $options):void {
+
+    public function sendVideoUploadComplete(array $options): void
+    {
 
         $data = [
             'uri' => '/video/upload/complete',
@@ -60,8 +72,9 @@ class WebSocket {
         ];
         $this->sendWebSocketRequest($data);
     }
-    
-    public function sendPhotoUploadComplete(array $options):void {
+
+    public function sendPhotoUploadComplete(array $options): void
+    {
 
         $data = [
             'uri' => '/photo/upload/complete',
@@ -70,7 +83,8 @@ class WebSocket {
         $this->sendWebSocketRequest($data);
     }
 
-    public function sendActivity($options) {
+    public function sendActivity($options)
+    {
 
         $data = [
             'uri' => '/activity',
@@ -80,8 +94,9 @@ class WebSocket {
     }
 
     //sends a websocket notification via curl to the websocket notification server
-    private function sendWebSocketRequest($data) {
-       
+    private function sendWebSocketRequest($data)
+    {
+
         $ch = curl_init();
         $host = $_ENV['WEBSOCKET_HOST'];
         curl_setopt($ch, CURLOPT_URL, $host . $data['uri']);
@@ -96,9 +111,7 @@ class WebSocket {
         curl_close($ch);
 
         if (isset($error_msg)) {
-         
         }
         return $response;
     }
-
 }

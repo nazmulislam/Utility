@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace NazmulIslam\Utility\UrlShortener;
 
 
@@ -14,7 +16,7 @@ class UrlShortener
     /**
      *
      */
-    public static function validateUrlFormat($url)
+    public static function validateUrlFormat(string $url): bool
     {
         $regex = "((https?|ftp)\:\/\/)?";
         $regex .= "([a-z0-9+!*(),;?&=\$_.-]+(\:[a-z0-9+!*(),;?&=\$_.-]+)?@)?";
@@ -23,17 +25,17 @@ class UrlShortener
         $regex .= "(\/([a-z0-9+\$_-]\.?)+)*\/?";
         $regex .= "(\?[a-z+&\$_.-][a-z0-9;:@&%=+\/\$_.-]*)?";
         $regex .= "(#[a-z_.-][a-z0-9+\$_.-]*)?";
-        $data = true ;
+        $data = true;
         if (!preg_match("/^$regex$/i", $url)) {
-            $data = [''] ;
+            return false;
         }
-        return $data ;
+        return true;
     }
 
     /**
      *
      */
-    public static function verifyUrlExists($url)
+    public static function verifyUrlExists(string $url)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -49,43 +51,35 @@ class UrlShortener
      *
      */
 
-    public static function createShortCode($url)
+    public static function createShortCode(): string
     {
-        $shortCode = self::generateRandomString(self::$codeLength);
-        return $shortCode;
+        return self::generateRandomString(self::$codeLength);
     }
 
     /**
      *
      */
 
-    public static function generateRandomString($length = 6)
+    public static function generateRandomString($length = 6): string
     {
         $sets = explode('|', self::$chars);
         $all = '';
         $randString = '';
-        foreach($sets as $set) {
+        foreach ($sets as $set) {
             $randString .= $set[array_rand(str_split($set))];
             $all .= $set;
         }
         $all = str_split($all);
-        for($i = 0; $i < $length - count($sets); $i++) {
+        for ($i = 0; $i < $length - count($sets); $i++) {
             $randString .= $all[array_rand($all)];
         }
         $randString = str_shuffle($randString);
         return $randString;
     }
 
-
-    /**
-     *
-     */
-    public static function validateShortCode($code)
+    public static function validateShortCode(string $code): int|bool
     {
         $rawChars = str_replace('|', '', self::$chars);
-        return preg_match("|[".$rawChars."]+|", $code);
+        return preg_match("|[" . $rawChars . "]+|", $code);
     }
-
-
-
 }

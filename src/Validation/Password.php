@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace NazmulIslam\Utility\Validation;
 
 /**
@@ -9,13 +11,13 @@ namespace NazmulIslam\Utility\Validation;
  */
 class Password
 {
-    static function hash(string $passwordText)
+    static function hash(string $passwordText, array $options = ['memory_cost' => 1 << 11, 'time_cost' => 4, 'threads' => 2]): string | bool | null
     {
-        $options = ['memory_cost' => 1 << 11, 'time_cost' => 4, 'threads' => 2];
+
         return  \password_hash($passwordText, PASSWORD_ARGON2I, $options);
     }
 
-    static function generatePassword(int $length = 9)
+    static function generatePassword(int $length = 9): string
     {
         return substr(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', 5)), 0, $length);
     }
