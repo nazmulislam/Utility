@@ -10,7 +10,7 @@ class ArrayUtility
     public static array $sort_by_param;
     /**
      * @Description: It takes Eloquent model object and convert it to array.
-     * @param \App\Model\Eloquent $eloquent
+     * @param \NazmulIslam\Utility\Model\Eloquent $eloquent
      * @return array
      */
     public static function getArray($eloquent): array

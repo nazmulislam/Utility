@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace  NazmulIslam\Utility\Authentication;
 
-use App\Models\App\User;
-use App\Models\App\UserBruteForce;
+use NazmulIslam\Utility\Models\NazmulIslam\Utility\User;
+use NazmulIslam\Utility\Models\NazmulIslam\Utility\UserBruteForce;
 use NazmulIslam\Utility\Browser\Browser;
-use App\Components\LoginActivityComponent;
-use App\Models\App\PlatformSetting;
+use NazmulIslam\Utility\Components\LoginActivityComponent;
+use NazmulIslam\Utility\Models\NazmulIslam\Utility\PlatformSetting;
 use NazmulIslam\Utility\GEOIP\GEOIP;
 use NazmulIslam\Utility\Logger\Logger;
 use NazmulIslam\Utility\Queue\Queue;
@@ -15,7 +15,7 @@ use NazmulIslam\Utility\Queue\Queue;
 /**
  * Class to handle authentication activities
  * Class Authentication
- * @package App\Domain\Authentication
+ * @package NazmulIslam\Utility\Domain\Authentication
  */
 class BruteForce
 {
@@ -292,13 +292,13 @@ class BruteForce
             'to' => $this->user->username,
             'subject' => $this->user->first_name . " " . $this->user->last_name .' is temporarily locked out ',
             'message' => $templateUser,
-        ], $queue = 'Email', '\\App\\Jobs\\SendEmailJob', $_ENV['REDIS_HOST'], $_ENV['REDIS_PORT'], $database = 0);
+        ], $queue = 'Email', '\\NazmulIslam\Utility\\Jobs\\SendEmailJob', $_ENV['REDIS_HOST'], $_ENV['REDIS_PORT'], $database = 0);
 
         /**
          * @todo needs to be uncommented after old queue removed
          */
         // $jobArray = array(
-        //     'class' => '\\App\\Jobs\\SendEmailRabbitMQJob',
+        //     'class' => '\\NazmulIslam\Utility\\Jobs\\SendEmailRabbitMQJob',
         //     'args' => [
         //         'to' => $this->user->username,
         //         'subject' => $this->user->first_name . " " . $this->user->last_name .' is temporarily locked out ',
@@ -323,7 +323,7 @@ class BruteForce
             'subject' => $this->user->first_name . " " . $this->user->last_name . ' is temporarily locked out ',
             'message' => $templateAdmin,
         ], $queue = 'Email',
-            '\\App\\Jobs\\SendEmailJob',
+            '\\NazmulIslam\Utility\\Jobs\\SendEmailJob',
             $_ENV['REDIS_HOST'],
             $_ENV['REDIS_PORT'],
             $database = 0
@@ -333,7 +333,7 @@ class BruteForce
          * @todo needs to be uncommented after old queue removed
          */
         // $jobArray = array(
-        //     'class' => '\\App\\Jobs\\SendEmailRabbitMQJob',
+        //     'class' => '\\NazmulIslam\Utility\\Jobs\\SendEmailRabbitMQJob',
         //     'args' => [
         //         'to' => $StudioEmail,
         //         'subject' => $this->user->first_name . " " . $this->user->last_name . ' is temporarily locked out ',
@@ -358,10 +358,10 @@ class BruteForce
             'to' => $this->user->username,
             'subject' => $this->user->first_name . " " . $this->user->last_name . ' is permanently locked out ',
             'message' => $template,
-        ], $queue = 'Email', '\\App\\Jobs\\SendEmailJob', $_ENV['REDIS_HOST'], $_ENV['REDIS_PORT'], $database = 0);
+        ], $queue = 'Email', '\\NazmulIslam\Utility\\Jobs\\SendEmailJob', $_ENV['REDIS_HOST'], $_ENV['REDIS_PORT'], $database = 0);
 
         // $jobArray = array(
-        //     'class' => '\\App\\Jobs\\SendEmailRabbitMQJob',
+        //     'class' => '\\NazmulIslam\Utility\\Jobs\\SendEmailRabbitMQJob',
         //     'args' => [
         //         'to' => $this->user->username,
         //         'subject' => $this->user->first_name . " " . $this->user->last_name . ' is permanently locked out ',
@@ -388,7 +388,7 @@ class BruteForce
                 'message' => $template,
             ],
             $queue = 'Email',
-            '\\App\\Jobs\\SendEmailJob',
+            '\\NazmulIslam\Utility\\Jobs\\SendEmailJob',
             $_ENV['REDIS_HOST'],
             $_ENV['REDIS_PORT'],
             $database = 0
@@ -398,7 +398,7 @@ class BruteForce
          * @todo needs to be uncommented after old queue removed
          */
         // $jobArray = array(
-        //     'class' => '\\App\\Jobs\\SendEmailRabbitMQJob',
+        //     'class' => '\\NazmulIslam\Utility\\Jobs\\SendEmailRabbitMQJob',
         //     'args' => [
         //         'to' => $StudioEmail,
         //         'subject' => $this->user->first_name . " " . $this->user->last_name . ' is permanently locked out',

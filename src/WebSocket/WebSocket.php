@@ -7,7 +7,7 @@ namespace NazmulIslam\Utility\WebSocket;
 /**
  * WebSocket Component which contains all the logic for sending notifications to the client browsers.
  * Class WebSocketComponent
- * @package App\Core\Components
+ * @package NazmulIslam\Utility\Core\Components
  *
  * TODO: Need to refactor the send methods sendNotifications
  */

@@ -10,7 +10,7 @@ use NazmulIslam\Utility\Logger\Logger;
 /**
  * Class to handle authentication activities
  * Class Authentication
- * @package App\Domain\Authentication
+ * @package NazmulIslam\Utility\Domain\Authentication
  */
 class Authentication
 {

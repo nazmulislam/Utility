@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NazmulIslam\Utility;
 
-use App\Values\EnvironmentVariables as ENV_VARS;
+use NazmulIslam\Utility\Values\EnvironmentVariables as ENV_VARS;
 
 /**
  * Description of EnvironmentVariablesValidate
