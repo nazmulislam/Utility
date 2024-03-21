@@ -13,7 +13,7 @@ use GuzzleHttp\Client;
  */
 class HTTPClient
 {
-    static $base_uri;
+    static $baseUri;
     static $endpoint;
     static $method;
     static $timeout;
@@ -22,9 +22,9 @@ class HTTPClient
     static $data;
     static $authToken;
 
-    static function requestWithJson(string $base_uri, string $endpoint, string $method, array $data, string $authToken = NULL, float $timeout = 30.0)
+    static function requestWithJson(string $baseUri, string $endpoint, string $method, array $data, string $authToken = NULL, float $timeout = 30.0)
     {
-        self::$base_uri = $base_uri;
+        self::$baseUri = $baseUri;
         self::$method = strtoupper($method);
         self::$endpoint = $endpoint;
         self::$timeout = $timeout;
@@ -44,7 +44,7 @@ class HTTPClient
         self::$client = new Client();
         self::$response = self::$client->request(
             self::$method,
-            self::$base_uri . self::$endpoint,
+            self::$baseUri . self::$endpoint,
             [
                 \GuzzleHttp\RequestOptions::JSON => self::$data,
                 'headers' => $headers
@@ -52,9 +52,9 @@ class HTTPClient
         );
     }
 
-    static function request(string $base_uri, string $endpoint, string $method, array $data, string $authToken = NULL, float $timeout = 2.0)
+    static function request(string $baseUri, string $endpoint, string $method, array $data, string $authToken = NULL, float $timeout = 2.0)
     {
-        self::$base_uri = $base_uri;
+        self::$baseUri = $baseUri;
         self::$method = strtoupper($method);
         self::$endpoint = $endpoint;
         self::$timeout = $timeout;
@@ -74,7 +74,7 @@ class HTTPClient
         self::$client = new Client();
         self::$response = self::$client->request(
             self::$method,
-            self::$base_uri . self::$endpoint,
+            self::$baseUri . self::$endpoint,
             [
                 'form_params' => self::$data,
                 'headers' => $headers

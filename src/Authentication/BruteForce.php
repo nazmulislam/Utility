@@ -10,7 +10,7 @@ use App\Components\LoginActivityComponent;
 use App\Models\App\PlatformSetting;
 use NazmulIslam\Utility\GEOIP\GEOIP;
 use NazmulIslam\Utility\Logger\Logger;
-use NazmulIslam\Utility\Queue\QueueRabbitMQ;
+use NazmulIslam\Utility\Queue\Queue;
 
 /**
  * Class to handle authentication activities
@@ -305,7 +305,7 @@ class BruteForce
         //         'message' => $templateUser,
         //     ]
         // );
-        // QueueRabbitMQ::addToQueue(args: $jobArray, queue: 'email_queue', deliveryMode: 2);
+        // Queue::addToQueue(args: $jobArray, queue: 'email_queue', deliveryMode: 2);
 
         // For Admin
         $platformSettingStudioEmail = PlatformSetting::select('platform_variable_value')->where('platform_variable_key', 'studio_email_address')->first();
@@ -340,7 +340,7 @@ class BruteForce
         //         'message' => $templateAdmin,
         //     ]
         // );
-        // QueueRabbitMQ::addToQueue(args: $jobArray, queue: 'email_queue', deliveryMode: 2);
+        // Queue::addToQueue(args: $jobArray, queue: 'email_queue', deliveryMode: 2);
     }
 
 
@@ -368,7 +368,7 @@ class BruteForce
         //         'message' => $template,
         //     ]
         // );
-        // QueueRabbitMQ::addToQueue(args: $jobArray, queue: 'email_queue', deliveryMode: 2);
+        // Queue::addToQueue(args: $jobArray, queue: 'email_queue', deliveryMode: 2);
 
         // For Admin
         $platformSettingStudioEmail = PlatformSetting::select('platform_variable_value')->where('platform_variable_key', 'studio_email_address')->first();
@@ -405,7 +405,7 @@ class BruteForce
         //         'message' => $template,
         //     ]
         // );
-        // QueueRabbitMQ::addToQueue(args: $jobArray, queue: 'email_queue', deliveryMode: 2);
+        // Queue::addToQueue(args: $jobArray, queue: 'email_queue', deliveryMode: 2);
     }
 
 

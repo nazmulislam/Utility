@@ -42,7 +42,6 @@ class Authentication
     {
 
         $issuer =  (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
-        Logger::debug($issuer);
         $issuedAt = time();
 
         //Time until access token expires 15 minutes
@@ -71,13 +70,6 @@ class Authentication
 
         $issuer = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
         $issuedAt = time();
-        $seconds = 60;
-        $minutes = 60;
-        $hours = 24;
-        $days = 7;
-        // Logger::debug('createRefreshtoken ->', [$this->user]);
-        //Time until refresh token expires 1 week
-        // $expiredAt = $issuedAt + ($minutes * $seconds * $hours * $days);
         $payload = array(
             "iss" => $issuer,
             "iat" => $issuedAt,
