@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace NazmulIslam\Utility\Encryption;
 
 /**
@@ -40,12 +42,12 @@ class FileEncryption implements StringEncryptionInterface
      */
     private $hash = 'sha256';
 
-    public function __construct()
+    public function __construct(string $encryptionType, string $encryptionSecretKey, string $encryptionIV)
     {
-        $this->encryptionMethod = $_ENV['ENCRYPTION_TYPE'];
-        $this->secretKey = $_ENV['ENCRYPTION_SECRET_KEY'];
-        $this->secretIV = $_ENV['ENCRYPTION_IV'];
-        
+        $this->encryptionMethod = $encryptionType;
+        $this->secretKey = $encryptionSecretKey;
+        $this->secretIV = $encryptionIV;
+
         $this->hashKey = hash($this->hash, $this->secretKey);
         $this->IV = substr(hash($this->hash, $this->secretIV), 0, 16);
     }
@@ -61,8 +63,7 @@ class FileEncryption implements StringEncryptionInterface
     function encrypt($string)
     {
         $output = false;
-        if(empty($string) || $string == "")
-        {
+        if (empty($string) || $string == "") {
             return $string;
         }
         $output = openssl_encrypt($string, $this->encryptionMethod, $this->hashKey, 0, $this->IV);
@@ -83,12 +84,10 @@ class FileEncryption implements StringEncryptionInterface
 
         $output = false;
         $output = openssl_decrypt(base64_decode($string), $this->encryptionMethod, $this->hashKey, 0, $this->IV);
-       
-        if(empty($output) || $output == "")
-        {
+
+        if (empty($output) || $output == "") {
             return $string;
         }
         return $output;
     }
-
 }

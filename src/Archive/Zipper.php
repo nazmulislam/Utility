@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace NazmulIslam\Utility\Archive;
 
 /**
@@ -27,20 +29,16 @@ class Zipper
     {
         $handle = opendir($folder);
 
-        while (FALSE !== $f = readdir($handle))
-        {
+        while (FALSE !== $f = readdir($handle)) {
             // Check for local/parent path or zipping file itself and skip.
-            if ($f != '.' && $f != '..' && $f != basename(__FILE__))
-            {
+            if ($f != '.' && $f != '..' && $f != basename(__FILE__)) {
                 $filePath = "$folder/$f";
                 // Remove prefix from file path before add to zip.
                 $localPath = substr($filePath, $exclusiveLength);
 
-                if (is_file($filePath))
-                {
+                if (is_file($filePath)) {
                     $zipFile->addFile($filePath, $localPath);
-                } elseif (is_dir($filePath))
-                {
+                } elseif (is_dir($filePath)) {
                     // Add sub-directory.
                     $zipFile->addEmptyDir($localPath);
                     self::folderToZip($filePath, $zipFile, $exclusiveLength);
@@ -62,7 +60,7 @@ class Zipper
      * @param string $outZipPath
      *   Relative path of the resulting output zip file.
      */
-    public static function zipDir($sourcePath, $outZipPath)
+    public static function zipDir(string $sourcePath, string $outZipPath): void
     {
         $pathInfo = pathinfo($sourcePath);
         $parentPath = $pathInfo['dirname'];
@@ -71,16 +69,11 @@ class Zipper
         $z = new \ZipArchive();
         $z->open($outZipPath, \ZipArchive::CREATE);
         $z->addEmptyDir($dirName);
-        if ($sourcePath == $dirName)
-        {
+        if ($sourcePath == $dirName) {
             self::folderToZip($sourcePath, $z, 0);
-        } else
-        {
+        } else {
             self::folderToZip($sourcePath, $z, strlen("$parentPath/"));
         }
         $z->close();
-
-        $GLOBALS['status'] = array('success' => 'Successfully created archive ' . $outZipPath);
     }
-
 }

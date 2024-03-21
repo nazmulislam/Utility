@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace NazmulIslam\Utility\ArrayUtility;
 
 class ArrayUtility
@@ -18,11 +20,9 @@ class ArrayUtility
 
     static function castObjectToArray($obj = [])
     {
-        if (!is_null($obj) && !empty($obj))
-        {
+        if (!is_null($obj) && !empty($obj)) {
             return json_decode(json_encode($obj), true);
-        } else
-        {
+        } else {
             return $obj;
         }
     }
@@ -30,29 +30,26 @@ class ArrayUtility
     static function castObjectToSingletonArray($obj = [])
     {
         $data = json_decode(json_encode($obj), true);
-        if (isset($data[0]) && !empty($data[0]))
-        {
+        if (isset($data[0]) && !empty($data[0])) {
             $data = isset($data[0]) ? $data[0] : [];
         }
         return $data;
     }
 
     /**
-     * 
-     * @param type $array
-     * @param type $filter_keys
-     * @param type $filter_values
-     * @return Description : $filter_keys & $filter_values should have same number of objects.
+     * Undocumented function
+     *
+     * @param array $array
+     * @param array $filter_keys
+     * @param array $filter_values
+     * @return array
      */
-    static public function filterArrayByKeysAndValues($array, $filter_keys, $filter_values)
+    static public function filterArrayByKeysAndValues(array $array, array $filter_keys, array $filter_values): array
     {
         $filteredArray = [];
-        if (count($filter_keys) == count($filter_values))
-        {
-            for ($x = 0; $x < count($filter_keys); $x++)
-            {
-                if (isset($filter_keys[$x]) && isset($filter_values[$x]))
-                {
+        if (count($filter_keys) === count($filter_values)) {
+            for ($x = 0; $x < count($filter_keys); $x++) {
+                if (isset($filter_keys[$x]) && isset($filter_values[$x])) {
                     self::$sort_by_param = [
                         'key' => isset($filter_keys[$x]) ? $filter_keys[$x] : '',
                         'value' => isset($filter_values[$x]) ? $filter_values[$x] : ''
@@ -64,7 +61,15 @@ class ArrayUtility
         return $filteredArray;
     }
 
-    static public function filterArrayByValue($array, $filter_key, $filter_value)
+    /**
+     * Undocumented function
+     *
+     * @param array $array
+     * @param string $filter_key
+     * @param string|integer|null $filter_value
+     * @return array
+     */
+    static public function filterArrayByValue(array $array, string $filter_key, string|int|null $filter_value): array
     {
         self::$sort_by_param = [
             'key' => isset($filter_key) ? $filter_key : '',
@@ -73,43 +78,48 @@ class ArrayUtility
         return array_values(array_filter($array, "\NazmulIslam\Utility\ArrayUtility\ArrayUtility::filterByValue"));
     }
 
-    static private function filterByValue($arrayValue)
+    /**
+     * Undocumented function
+     *
+     * @param array $array
+     * @return boolean
+     */
+    static public function filterByValue(array $array): bool
     {
-        if (isset($arrayValue[self::$sort_by_param['key']]) && $arrayValue[self::$sort_by_param['key']] == self::$sort_by_param['value'])
-        {
+        if (isset($array[self::$sort_by_param['key']]) && $array[self::$sort_by_param['key']] == self::$sort_by_param['value']) {
             return true;
         }
         return false;
     }
 
-    static public function groupBy($key, $data, $showKeyAsIndex = TRUE)
+    static public function groupBy(string $key, array $data, bool $showKeyAsIndex = true)
     {
         $result = [];
-        foreach ($data as $val)
-        {
-            if (array_key_exists($key, $val))
-            {
+        foreach ($data as $val) {
+            if (array_key_exists($key, $val)) {
                 $result[$val[$key]][] = $val;
-            } else
-            {
+            } else {
                 $result[""][] = $val;
             }
         }
-        if ($showKeyAsIndex == TRUE)
-        {
+        if ($showKeyAsIndex === true) {
             return $result;
-        } else
-        {
+        } else {
             return self::replaceKeyWithIndex($result);
         }
     }
 
-    static public function replaceKeyWithIndex($result): array
+    /**
+     * 
+     *
+     * @param array $array
+     * @return array
+     */
+    static public function replaceKeyWithIndex(array $array): array
     {
         $formatResponse = [];
-        foreach ($result as $section => $sectionData)
-        {
-            $formatResponse[] = $sectionData;
+        foreach ($array as $key => $value) {
+            $formatResponse[] = $value;
         }
         return $formatResponse;
     }
@@ -123,14 +133,11 @@ class ArrayUtility
      */
     static public function getArrayFilteredByKeyAndValue(array $data, string $key, string $value): array
     {
-        return array_filter($data, function($row) use($key, $value)
-        {
+        return array_filter($data, function ($row) use ($key, $value) {
 
-            if ($row[$key] == $value)
-            {
+            if ($row[$key] == $value) {
                 return true;
-            } else
-            {
+            } else {
                 return false;
             }
         }, ARRAY_FILTER_USE_BOTH);
@@ -142,18 +149,16 @@ class ArrayUtility
      * @param int|string $position
      * @param mixed      $insert
      */
-    static function arrayInsert(array &$array, int $position, $insert)
+    static function arrayInsert(array &$array, int $position, int | null $insert)
     {
-        if (is_int($position))
-        {
+        if (is_int($position)) {
             array_splice($array, $position, 0, $insert);
-        } else
-        {
+        } else {
             $pos = array_search($position, array_keys($array));
             $array = array_merge(
-                    array_slice($array, 0, $pos),
-                    $insert,
-                    array_slice($array, $pos)
+                array_slice($array, 0, $pos),
+                $insert,
+                array_slice($array, $pos)
             );
         }
     }
@@ -164,37 +169,37 @@ class ArrayUtility
      * @param int|string $position
      * @param mixed      $insert
      */
-    static function arrayInsertNoReference(array $array, int $position, $insert): array
+    static function arrayInsertNoReference(array $array, int $position, int | null $insert): array
     {
-        if (is_int($position))
-        {
+        if (is_int($position)) {
             array_splice($array, $position, 0, $insert);
             return $array;
-        } else
-        {
+        } else {
             $pos = array_search($position, array_keys($array));
-            return $newArray = array_merge(
-                    array_slice($array, 0, $pos),
-                    $insert,
-                    array_slice($array, $pos)
+            return array_merge(
+                array_slice($array, 0, $pos),
+                $insert,
+                array_slice($array, $pos)
             );
         }
     }
 
-    static function arrayFlatten(array $array): array
+    /**
+     * Undocumented function
+     *
+     * @param array $array
+     * @return void
+     */
+    static function arrayFlatten(array $array): array | bool
     {
-        if (!is_array($array))
-        {
-            return FALSE;
+        if (!is_array($array)) {
+            return false;
         }
         $result = [];
-        foreach ($array as $key => $value)
-        {
-            if (is_array($value))
-            {
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
                 $result = \array_merge($result, self::arrayFlatten($value));
-            } else
-            {
+            } else {
                 $result[$key] = $value;
             }
         }
@@ -207,9 +212,8 @@ class ArrayUtility
      * @param string $key
      * @return array
      */
-    static function singleArray(array $array,string $key):array
+    static function singleArray(array $array, string $key): array
     {
         return array_column($array, $key);
     }
-
 }

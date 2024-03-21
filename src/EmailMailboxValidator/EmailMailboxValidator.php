@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace NazmulIslam\Utility\EmailMailboxValidator;
 
-use NazmulIslam\Utility\Logger\Logger;
-
-
 /**
  * if response code is 250 - Email address exist
  * if response code is 550 - Email address does not exist
@@ -18,6 +15,12 @@ class EmailMailboxValidator
     public const DOES_EXIST_250 = 250;
 
 
+    /**
+     * Undocumented function
+     *
+     * @param string $hostname
+     * @return boolean
+     */
     public static function checkDNSDomainExist(string $hostname): bool
     {
 
@@ -28,6 +31,12 @@ class EmailMailboxValidator
     }
 
 
+    /**
+     * Undocumented function
+     *
+     * @param string $email
+     * @return string|bool|array
+     */
     public static function checkIfMailboxExist(string $email): string | bool | array
     {
 
@@ -70,14 +79,14 @@ class EmailMailboxValidator
                     if ($fp) {
                         $ms_resp = "";
                         // say HELO to mailserver
-                        $ms_resp .= self::send_command($fp, "HELO microsoft.com");
+                        $ms_resp .= self::sendCommand($fp, "HELO microsoft.com");
 
                         // initialize sending mail
-                        $ms_resp .= self::send_command($fp, "MAIL FROM:<support@microsoft.com>");
+                        $ms_resp .= self::sendCommand($fp, "MAIL FROM:<support@microsoft.com>");
 
                         // try receipent address, will return 250 when ok..
 
-                        $rcpt_text = self::send_command($fp, "RCPT TO:<" . $email . ">");
+                        $rcpt_text = self::sendCommand($fp, "RCPT TO:<" . $email . ">");
                         //echo $ms_resp .= $rcpt_text;
                         $return['receipientSendMessage'] = $rcpt_text;
 
@@ -95,7 +104,7 @@ class EmailMailboxValidator
                         }
 
                         // quit mail server connection
-                        $ms_resp .= self::send_command($fp, "QUIT");
+                        $ms_resp .= self::sendCommand($fp, "QUIT");
 
                         fclose($fp);
                     }
@@ -108,14 +117,20 @@ class EmailMailboxValidator
         return $return;
     }
 
-    public static function send_command($fp, $out)
+    public static function sendCommand($fp, $out)
     {
 
         fwrite($fp, $out . "\r\n");
-        return self::get_data($fp);
+        return self::getData($fp);
     }
 
-    public static function get_data($fp)
+    /**
+     * Undocumented function
+     *
+     * @param string $fp
+     * @return string
+     */
+    public static function getData(string $fp): string
     {
         $s = "";
         stream_set_timeout($fp, 2);
@@ -126,6 +141,12 @@ class EmailMailboxValidator
         return $s;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $email
+     * @return array
+     */
     public static function emailAdressSpilter(string $email): array
     {
         $data = explode('@', $email);
