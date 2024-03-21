@@ -25,8 +25,8 @@ class VideoUtility
 
     public function __construct(string $video, string $destination, string $mimeType)
     {
-        $this->video = __DIR__ . '/../../../' . $video;
-        $this->destination = __DIR__.'/../../../'.$destination;
+        $this->video = __DIR__.'/../../../../../' . $video;
+        $this->destination = __DIR__.'/../../../../../'.$destination;
         $this->mimeType = $mimeType;
 
     }

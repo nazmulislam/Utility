@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c6c1c020702c7fa6e249644220ac9af",
+    "content-hash": "3fc6e0b18660e80dcbd448ed6ab43c2f",
     "packages": [
         {
             "name": "chillerlan/php-qrcode",
@@ -1953,6 +1953,138 @@
                 "source": "https://github.com/php-amqplib/php-amqplib/tree/v3.6.1"
             },
             "time": "2024-02-07T17:21:26+00:00"
+        },
+        {
+            "name": "phpfastcache/phpfastcache",
+            "version": "9.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPSocialNetwork/phpfastcache.git",
+                "reference": "372d62e0bbab5bcfac6404dc912040b038a3afb7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPSocialNetwork/phpfastcache/zipball/372d62e0bbab5bcfac6404dc912040b038a3afb7",
+                "reference": "372d62e0bbab5bcfac6404dc912040b038a3afb7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=8.0",
+                "psr/cache": "^2.0||^3.0",
+                "psr/simple-cache": "^2.0||^3.0"
+            },
+            "provide": {
+                "psr/cache-implementation": "2.0|3.0",
+                "psr/simple-cache-implementation": "2.0|3.0"
+            },
+            "require-dev": {
+                "ext-gettext": "*",
+                "jetbrains/phpstorm-stubs": "dev-master",
+                "league/climate": "^3.8",
+                "phpfastcache/phpfastcache-devtools": "dev-master",
+                "phpmd/phpmd": "@stable",
+                "phpstan/phpstan": "@stable",
+                "squizlabs/php_codesniffer": "@stable"
+            },
+            "suggest": {
+                "ext-apcu": "*",
+                "ext-cassandra": "*",
+                "ext-couchbase": "^3.0",
+                "ext-curl": "*",
+                "ext-intl": "*",
+                "ext-leveldb": "*",
+                "ext-memcache": "*",
+                "ext-memcached": "*",
+                "ext-redis": "*",
+                "ext-sqlite": "*",
+                "ext-wincache": "*",
+                "phpfastcache/arangodb-extension": "^9.2",
+                "phpfastcache/couchbasev4-extension": "^9.2",
+                "phpfastcache/couchdb-extension": "^9.2",
+                "phpfastcache/dynamodb-extension": "^9.2",
+                "phpfastcache/firestore-extension": "^9.2",
+                "phpfastcache/mongodb-extension": "^9.2",
+                "phpfastcache/phpssdb": "~1.1.0",
+                "phpfastcache/ravendb-extension": "^9.2",
+                "phpfastcache/solr-extension": "^9.2",
+                "predis/predis": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phpfastcache\\": "lib/Phpfastcache/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Georges.L",
+                    "email": "contact@geolim4.com",
+                    "homepage": "https://github.com/Geolim4",
+                    "role": "Actual Project Manager/Developer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/PHPSocialNetwork/phpfastcache/graphs/contributors"
+                }
+            ],
+            "description": "PHP Abstract Cache Class - Reduce your database call using cache system. Phpfastcache handles a lot of drivers such as Apc(u), Cassandra, CouchBase, Couchdb, Dynamodb, Firestore, Mongodb, Files, (P)redis, Leveldb, Memcache(d), Ravendb, Ssdb, Sqlite, Wincache, Xcache, Zend Data Cache.",
+            "homepage": "https://www.phpfastcache.com",
+            "keywords": [
+                "ArangoDb",
+                "LevelDb",
+                "abstract",
+                "apc",
+                "apcu",
+                "cache",
+                "cache class",
+                "caching",
+                "cassandra",
+                "cookie",
+                "couchbase",
+                "couchdb",
+                "dynamodb",
+                "files cache",
+                "firestore",
+                "memcache",
+                "memcached",
+                "mongodb",
+                "mysql cache",
+                "pdo cache",
+                "php cache",
+                "predis",
+                "ravendb",
+                "redis",
+                "redis cluster",
+                "solr",
+                "ssdb",
+                "wincache",
+                "xcache",
+                "zend",
+                "zend data cache",
+                "zend disk cache",
+                "zend memory cache",
+                "zend server"
+            ],
+            "support": {
+                "docs": "https://github.com/PHPSocialNetwork/phpfastcache/wiki",
+                "issues": "https://github.com/PHPSocialNetwork/phpfastcache/issues",
+                "security": "https://github.com/PHPSocialNetwork/phpfastcache/blob/master/SECURITY.md",
+                "source": "https://github.com/PHPSocialNetwork/phpfastcache",
+                "wiki": "https://github.com/PHPSocialNetwork/phpfastcache/wiki"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/geolim4",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-01-13T06:26:00+00:00"
         },
         {
             "name": "phpmailer/phpmailer",

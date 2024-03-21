@@ -5,13 +5,13 @@ namespace NazmulIslam\Utility\Archive;
 class Unzipper
 {
 
-    public $localdir = __DIR__.'/../../../';
+    public $localdir = __DIR__.'/../../../../../';
     
     public $zipfiles = [];
 
     public function __construct(string $path)
     {
-        $this->localdir = __DIR__.'/../../../'.$path;
+        $this->localdir = __DIR__.'/../../../../../'.$path;
         // Read directory and pick .zip, .rar and .gz files.
 //        if ($dh = opendir($this->localdir))
 //        {
@@ -122,9 +122,9 @@ class Unzipper
         if ($zip->open($this->localdir.DIRECTORY_SEPARATOR.$archive) === TRUE)
         {
             // Check if destination is writable
-            if (is_writeable(__DIR__.'/../../../'.$destination . '/'))
+            if (is_writeable(__DIR__.'/../../../../../'.$destination . '/'))
             {
-                $zip->extractTo(__DIR__.'/../../../'.$destination);
+                $zip->extractTo(__DIR__.'/../../../../../'.$destination);
                 $zip->close();
 
                 \NazmulIslam\Utility\Logger\Logger::debug('Files unzipped successfully');
@@ -163,7 +163,7 @@ class Unzipper
 
         $filename = pathinfo($this->localdir.DIRECTORY_SEPARATOR.$archive, PATHINFO_FILENAME);
         $gzipped = gzopen($this->localdir.DIRECTORY_SEPARATOR.$archive, "rb");
-        $file = fopen(__DIR__.'/../../../'.$destination . '/' . $filename, "w");
+        $file = fopen(__DIR__.'/../../../../../'.$destination . '/' . $filename, "w");
 
         while ($string = gzread($gzipped, 4096))
         {
@@ -173,15 +173,15 @@ class Unzipper
         fclose($file);
 
         // Check if file was extracted.
-        if (file_exists(__DIR__.'/../../../'.$destination . '/' . $filename))
+        if (file_exists(__DIR__.'/../../../../../'.$destination . '/' . $filename))
         {
             \NazmulIslam\Utility\Logger\Logger::debug('File unzipped successfully.');
 
             // If we had a tar.gz file, let's extract that tar file.
-            if (pathinfo(__DIR__.'/../../../'.$destination . '/' . $filename, PATHINFO_EXTENSION) == 'tar')
+            if (pathinfo(__DIR__.'/../../../../../'.$destination . '/' . $filename, PATHINFO_EXTENSION) == 'tar')
             {
-                $phar = new \PharData(__DIR__.'/../../../'.$destination . '/' . $filename);
-                if ($phar->extractTo(__DIR__.'/../../../'.$destination))
+                $phar = new \PharData(__DIR__.'/../../../../../'.$destination . '/' . $filename);
+                if ($phar->extractTo(__DIR__.'/../../../../../'.$destination))
                 {
                     \NazmulIslam\Utility\Logger\Logger::debug('Extracted tar.gz archive successfully.');
                    
@@ -218,12 +218,12 @@ class Unzipper
         if ($rar = \RarArchive::open($archive))
         {
             // Check if destination is writable
-            if (is_writeable(__DIR__.'/../../../'.$destination . '/'))
+            if (is_writeable(__DIR__.'/../../../../../'.$destination . '/'))
             {
                 $entries = $rar->getEntries();
                 foreach ($entries as $entry)
                 {
-                    $entry->extract(__DIR__.'/../../../'.$destination);
+                    $entry->extract(__DIR__.'/../../../../../'.$destination);
                 }
                 $rar->close();
 

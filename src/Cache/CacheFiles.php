@@ -8,15 +8,17 @@ use Phpfastcache\CacheManager;
 use Phpfastcache\Config\ConfigurationOption;
 use Phpfastcache\Drivers\Redis\Config as RedisConfig;
 
-class CacheFiles implements CacheInterface {
+class CacheFiles implements CacheInterface
+{
 
-    CONST CACHE_PATH = '';
+    const CACHE_PATH = '';
 
-    public static function getCachedData(string $driver) {
+    public static function getCachedData(string $driver)
+    {
 
         if ($driver == 'Files') {
             CacheManager::setDefaultConfig(new ConfigurationOption([
-                        'path' => __DIR__ . '/../../../' . $_ENV['SQL_CACHE_STORAGE'],
+                'path' => __DIR__ . '/../../../../../' . $_ENV['SQL_CACHE_STORAGE'],
             ]));
             return CacheManager::getInstance('Files');
         } else if ($driver == 'Redis') {
@@ -28,5 +30,4 @@ class CacheFiles implements CacheInterface {
             return CacheManager::getInstance('Redis', $redisConfig);
         }
     }
-
 }

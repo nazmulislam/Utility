@@ -6,7 +6,7 @@ namespace NazmulIslam\Utility\File;
 class File
 {
 
-    CONST RELATIVE_PATH = __DIR__ . '/../../../';
+    CONST RELATIVE_PATH = __DIR__.'/../../../../../';
 
     /**
      *
@@ -212,7 +212,7 @@ class File
      */
     static function moveUploadedFile(string $uploadFilename, string $uploadTempName, string $path)
     {
-        $directory = __DIR__ . '/../../../' . $path;
+        $directory = __DIR__.'/../../../../../' . $path;
         self::createDirectoryIfNotExists($path);
 
         $filename = self::checkUploadedFileName($path, $uploadFilename);
@@ -226,12 +226,12 @@ class File
 
     public static function moveExistingFile(string $uploadFilename, string $uploadTempName, string $path)
     {
-        $directory = __DIR__ . '/../../../' . $path;
+        $directory = __DIR__.'/../../../../../' . $path;
         self::createDirectoryIfNotExists($path);
 
         $filename = self::checkUploadedFileName($path, $uploadFilename);
 
-        if (!\rename(__DIR__ . '/../../../' . $uploadTempName, $directory . "/" . $filename))
+        if (!\rename(__DIR__.'/../../../../../' . $uploadTempName, $directory . "/" . $filename))
         {
             throw new \Exception('could not move file');
         }
@@ -240,7 +240,7 @@ class File
 
     public static function createDirectoryIfNotExists(string $path): void
     {
-        $directory = __DIR__ . '/../../../' . $path;
+        $directory = __DIR__.'/../../../../../' . $path;
         if (!file_exists($directory))
         {
             \mkdir($directory, 0755, true);
@@ -274,7 +274,7 @@ class File
     public static function checkUploadedFileName(string $path, string $filename): string
     {
         $count = 0;
-        $directory = __DIR__ . '/../../../' . $path . '/';
+        $directory = __DIR__.'/../../../../../' . $path . '/';
         while (file_exists($directory . $filename))
         {
             $path_parts = pathinfo($directory . $filename);
@@ -292,7 +292,7 @@ class File
      */
     static public function checkIfFileExists(string $file): bool
     {
-        if (!file_exists(__DIR__ . '/../../../' . $file))
+        if (!file_exists(__DIR__.'/../../../../../' . $file))
         {
             \NazmulIslam\Utility\Logger\Logger::debug('File path info ' . $file, []);
             return false;
@@ -311,7 +311,7 @@ class File
         if (self::checkIfFileExists($file))
         {
 
-            return pathinfo(realpath(__DIR__ . '/../../../') . $file);
+            return pathinfo(realpath(__DIR__.'/../../../../../') . $file);
         } else
         {
             \NazmulIslam\Utility\Logger\Logger::debug('NO FILE INFO: ' . $file, []);

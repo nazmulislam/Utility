@@ -30,8 +30,8 @@ class ImageUtility
     }
     public function setDefaults(string $image, string $destination, string $mimeType)
     {
-        $this->image = __DIR__ . '/../../../' . $image;
-        $this->destination = __DIR__.'/../../../'.$destination;
+        $this->image = __DIR__.'/../../../../../' . $image;
+        $this->destination = __DIR__.'/../../../../../'.$destination;
         $this->mimeType = $mimeType;
     }
     /**
