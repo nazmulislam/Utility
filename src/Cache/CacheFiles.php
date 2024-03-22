@@ -13,21 +13,24 @@ class CacheFiles implements CacheInterface
 
     const CACHE_PATH = '';
 
-    public static function getCachedData(string $driver)
+
+
+    public static function getCachedDataFromFile()
     {
 
-        if ($driver == 'Files') {
-            CacheManager::setDefaultConfig(new ConfigurationOption([
-                'path' => __DIR__ . '/../../../../../' . $_ENV['SQL_CACHE_STORAGE'],
-            ]));
-            return CacheManager::getInstance('Files');
-        } else if ($driver == 'Redis') {
-            $redisConfig = new RedisConfig();
-            $redisConfig->setHost((string) $_ENV['REDIS_CACHE_HOST']);
-            $redisConfig->setPort((int) $_ENV['REDIS_CACHE_PORT']);
-            $redisConfig->setPassword((string) $_ENV['REDIS_CACHE_PASSWORD']);
-            $redisConfig->setDatabase((int) $_ENV['REDIS_CACHE_DATABASE']);
-            return CacheManager::getInstance('Redis', $redisConfig);
-        }
+        CacheManager::setDefaultConfig(new ConfigurationOption([
+            'path' => __DIR__ . '/../../../../../' . $_ENV['SQL_CACHE_STORAGE'],
+        ]));
+        return CacheManager::getInstance('Files');
+    }
+    public static function getCachedDataFromRedis(string $host, int $port, string $password, int $database = 0)
+    {
+
+        $redisConfig = new RedisConfig();
+        $redisConfig->setHost((string) $_ENV['REDIS_CACHE_HOST']);
+        $redisConfig->setPort((int) $_ENV['REDIS_CACHE_PORT']);
+        $redisConfig->setPassword((string) $_ENV['REDIS_CACHE_PASSWORD']);
+        $redisConfig->setDatabase((int) $_ENV['REDIS_CACHE_DATABASE']);
+        return CacheManager::getInstance('Redis', $redisConfig);
     }
 }

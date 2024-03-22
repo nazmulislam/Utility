@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace NazmulIslam\Utility\Cache;
 
 /**
@@ -8,5 +10,7 @@ namespace NazmulIslam\Utility\Cache;
  */
 interface CacheInterface
 {
-    public static function getCachedData(string $driver);
+
+    public static function getCachedDataFromFile();
+    public static function getCachedDataFromRedis(string $host, int $port, string $password, int $database = 0);
 }
