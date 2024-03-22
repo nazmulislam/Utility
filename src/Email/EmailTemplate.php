@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Utility\Email;
+namespace NazmulIslam\Utility\Email;
 
 /**
  * Description of Utility
