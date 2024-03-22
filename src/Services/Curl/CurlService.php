@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NazmulIslam\Utility\Services\Curl;
 
 use Curl\Curl;
-use NazmulIslam\Utility\Logger\Logger;
+
 
 class CurlService
 {
