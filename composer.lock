@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "37641b3cec93e06f701c85079b3d87cf",
+    "content-hash": "05347c3b98fbc7b93eac317b3592ec01",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -756,6 +756,62 @@
                 "source": "https://github.com/igorw/evenement/tree/v3.0.2"
             },
             "time": "2023-08-08T05:53:35+00:00"
+        },
+        {
+            "name": "fig/http-message-util",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message-util.git",
+                "reference": "9d94dc0154230ac39e5bf89398b324a86f63f765"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message-util/zipball/9d94dc0154230ac39e5bf89398b324a86f63f765",
+                "reference": "9d94dc0154230ac39e5bf89398b324a86f63f765",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 || ^7.0 || ^8.0"
+            },
+            "suggest": {
+                "psr/http-message": "The package containing the PSR-7 interfaces"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Fig\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Utility classes and constants for use with PSR-7 (psr/http-message)",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "support": {
+                "issues": "https://github.com/php-fig/http-message-util/issues",
+                "source": "https://github.com/php-fig/http-message-util/tree/1.1.5"
+            },
+            "time": "2020-11-24T22:02:12+00:00"
         },
         {
             "name": "filp/whoops",
@@ -1596,6 +1652,54 @@
                 }
             ],
             "time": "2023-12-03T20:05:35+00:00"
+        },
+        {
+            "name": "illuminate/contracts",
+            "version": "v11.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/contracts.git",
+                "reference": "fae548ad43f569fc506f40385b2e0dcf1f4eb2c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/fae548ad43f569fc506f40385b2e0dcf1f4eb2c9",
+                "reference": "fae548ad43f569fc506f40385b2e0dcf1f4eb2c9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2",
+                "psr/container": "^1.1.1|^2.0.1",
+                "psr/simple-cache": "^1.0|^2.0|^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "11.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Contracts\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Contracts package.",
+            "homepage": "https://laravel.com",
+            "support": {
+                "issues": "https://github.com/laravel/framework/issues",
+                "source": "https://github.com/laravel/framework"
+            },
+            "time": "2024-02-23T15:52:10+00:00"
         },
         {
             "name": "league/container",
@@ -2449,6 +2553,67 @@
             "time": "2024-03-13T12:42:37+00:00"
         },
         {
+            "name": "paragonie/ciphersweet",
+            "version": "v4.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/ciphersweet.git",
+                "reference": "b3689655a8726fd156d0eb31fdb4f0592a30d123"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/ciphersweet/zipball/b3689655a8726fd156d0eb31fdb4f0592a30d123",
+                "reference": "b3689655a8726fd156d0eb31fdb4f0592a30d123",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "paragonie/constant_time_encoding": "^2",
+                "paragonie/sodium_compat": ">= 1.20 <2",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9",
+                "vimeo/psalm": "^4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ParagonIE\\CipherSweet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "ISC"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com"
+                }
+            ],
+            "description": "Searchable field-level encryption library for relational databases",
+            "keywords": [
+                "FIPS 140-2",
+                "SQL encryption",
+                "crm",
+                "cryptography",
+                "database encryption",
+                "encrypt",
+                "encryption",
+                "field-level encryption",
+                "libsodium",
+                "queryable encryption",
+                "searchable encryption"
+            ],
+            "support": {
+                "issues": "https://github.com/paragonie/ciphersweet/issues",
+                "source": "https://github.com/paragonie/ciphersweet/tree/v4.5.1"
+            },
+            "time": "2023-10-28T10:16:13+00:00"
+        },
+        {
             "name": "paragonie/constant_time_encoding",
             "version": "v2.6.3",
             "source": {
@@ -2564,6 +2729,92 @@
                 "source": "https://github.com/paragonie/random_compat"
             },
             "time": "2020-10-15T08:29:30+00:00"
+        },
+        {
+            "name": "paragonie/sodium_compat",
+            "version": "v1.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/sodium_compat.git",
+                "reference": "e592a3e06d1fa0d43988c7c7d9948ca836f644b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/e592a3e06d1fa0d43988c7c7d9948ca836f644b6",
+                "reference": "e592a3e06d1fa0d43988c7c7d9948ca836f644b6",
+                "shasum": ""
+            },
+            "require": {
+                "paragonie/random_compat": ">=1",
+                "php": "^5.2.4|^5.3|^5.4|^5.5|^5.6|^7|^8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^3|^4|^5|^6|^7|^8|^9"
+            },
+            "suggest": {
+                "ext-libsodium": "PHP < 7.0: Better performance, password hashing (Argon2i), secure memory management (memzero), and better security.",
+                "ext-sodium": "PHP >= 7.0: Better performance, password hashing (Argon2i), secure memory management (memzero), and better security."
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "autoload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "ISC"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com"
+                },
+                {
+                    "name": "Frank Denis",
+                    "email": "jedisct1@pureftpd.org"
+                }
+            ],
+            "description": "Pure PHP implementation of libsodium; uses the PHP extension if it exists",
+            "keywords": [
+                "Authentication",
+                "BLAKE2b",
+                "ChaCha20",
+                "ChaCha20-Poly1305",
+                "Chapoly",
+                "Curve25519",
+                "Ed25519",
+                "EdDSA",
+                "Edwards-curve Digital Signature Algorithm",
+                "Elliptic Curve Diffie-Hellman",
+                "Poly1305",
+                "Pure-PHP cryptography",
+                "RFC 7748",
+                "RFC 8032",
+                "Salpoly",
+                "Salsa20",
+                "X25519",
+                "XChaCha20-Poly1305",
+                "XSalsa20-Poly1305",
+                "Xchacha20",
+                "Xsalsa20",
+                "aead",
+                "cryptography",
+                "ecdh",
+                "elliptic curve",
+                "elliptic curve cryptography",
+                "encryption",
+                "libsodium",
+                "php",
+                "public-key cryptography",
+                "secret-key cryptography",
+                "side-channel resistant"
+            ],
+            "support": {
+                "issues": "https://github.com/paragonie/sodium_compat/issues",
+                "source": "https://github.com/paragonie/sodium_compat/tree/v1.20.0"
+            },
+            "time": "2023-04-30T00:54:53+00:00"
         },
         {
             "name": "php-amqplib/php-amqplib",
@@ -3977,6 +4228,89 @@
             "time": "2023-12-11T16:03:32+00:00"
         },
         {
+            "name": "slim/psr7",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slimphp/Slim-Psr7.git",
+                "reference": "08dbc65964bf2c1fb0fe54256322a272cd02596b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/slimphp/Slim-Psr7/zipball/08dbc65964bf2c1fb0fe54256322a272cd02596b",
+                "reference": "08dbc65964bf2c1fb0fe54256322a272cd02596b",
+                "shasum": ""
+            },
+            "require": {
+                "fig/http-message-util": "^1.1.5",
+                "php": "^8.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.0 || ^2.0",
+                "ralouphie/getallheaders": "^3.0",
+                "symfony/polyfill-php80": "^1.29"
+            },
+            "provide": {
+                "psr/http-factory-implementation": "^1.0",
+                "psr/http-message-implementation": "^1.0 || ^2.0"
+            },
+            "require-dev": {
+                "adriansuter/php-autoload-override": "^1.4",
+                "ext-json": "*",
+                "http-interop/http-factory-tests": "^1.1.0",
+                "php-http/psr7-integration-tests": "1.3.0",
+                "phpspec/prophecy": "^1.19",
+                "phpspec/prophecy-phpunit": "^2.2",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.6",
+                "squizlabs/php_codesniffer": "^3.9"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Slim\\Psr7\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Lockhart",
+                    "email": "hello@joshlockhart.com",
+                    "homepage": "http://joshlockhart.com"
+                },
+                {
+                    "name": "Andrew Smith",
+                    "email": "a.smith@silentworks.co.uk",
+                    "homepage": "http://silentworks.co.uk"
+                },
+                {
+                    "name": "Rob Allen",
+                    "email": "rob@akrabat.com",
+                    "homepage": "http://akrabat.com"
+                },
+                {
+                    "name": "Pierre Berube",
+                    "email": "pierre@lgse.com",
+                    "homepage": "http://www.lgse.com"
+                }
+            ],
+            "description": "Strict PSR-7 implementation",
+            "homepage": "https://www.slimframework.com",
+            "keywords": [
+                "http",
+                "psr-7",
+                "psr7"
+            ],
+            "support": {
+                "issues": "https://github.com/slimphp/Slim-Psr7/issues",
+                "source": "https://github.com/slimphp/Slim-Psr7/tree/master"
+            },
+            "time": "2024-03-03T21:28:35+00:00"
+        },
+        {
             "name": "smalot/pdfparser",
             "version": "v2.9.0",
             "source": {
@@ -4026,6 +4360,138 @@
                 "source": "https://github.com/smalot/pdfparser/tree/v2.9.0"
             },
             "time": "2024-03-01T09:51:10+00:00"
+        },
+        {
+            "name": "spatie/laravel-ciphersweet",
+            "version": "1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-ciphersweet.git",
+                "reference": "c8961f347b9554e357b8f784f7cc052a24770a9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-ciphersweet/zipball/c8961f347b9554e357b8f784f7cc052a24770a9f",
+                "reference": "c8961f347b9554e357b8f784f7cc052a24770a9f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.19|^10.0|^11.0",
+                "paragonie/ciphersweet": "^4.0.1",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.12.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "nunomaduro/collision": "^6.0|^8.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0|^8.0|^9.0",
+                "pestphp/pest": "^1.21|^2.34",
+                "pestphp/pest-plugin-laravel": "^1.1|^2.3",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5|^10.5",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\LaravelCipherSweet\\LaravelCipherSweetServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelCipherSweet": "Spatie\\LaravelCipherSweet\\Facades\\LaravelCipherSweet"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelCipherSweet\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rias Van der Veken",
+                    "email": "rias@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Use ciphersweet in your Laravel project",
+            "homepage": "https://github.com/spatie/laravel-ciphersweet",
+            "keywords": [
+                "laravel",
+                "laravel-ciphersweet",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/laravel-ciphersweet/tree/1.6.1"
+            },
+            "time": "2024-03-13T15:18:28+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.16.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "ddf678e78d7f8b17e5cdd99c0c3413a4a6592e53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/ddf678e78d7f8b17e5cdd99c0c3413a4a6592e53",
+                "reference": "ddf678e78d7f8b17e5cdd99c0c3413a4a6592e53",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.28|^10.0|^11.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.7|^8.0",
+                "pestphp/pest": "^1.22",
+                "phpunit/phpunit": "^9.5.24",
+                "spatie/pest-plugin-test-time": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.16.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-20T07:29:11+00:00"
         },
         {
             "name": "spatie/pdf-to-text",
@@ -9485,7 +9951,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "slim/psr7": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
