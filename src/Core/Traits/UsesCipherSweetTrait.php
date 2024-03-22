@@ -4,7 +4,7 @@
 namespace NazmulIslam\Utility\Core\Traits;
 
 use NazmulIslam\Utility\Logger\Logger;
-use NazmulIslam\Utility\Utility\Utility;
+use NazmulIslam\Utility\Utility;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Capsule\Manager as DB;
 use ParagonIE\CipherSweet\CipherSweet as CipherSweetEngine;

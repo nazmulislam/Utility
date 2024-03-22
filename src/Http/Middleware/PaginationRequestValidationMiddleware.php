@@ -26,7 +26,7 @@ class PaginationRequestValidationMiddleware extends RequestValidation
         $validator = new Validator($input);
         if(!$this->validate($validator)) {
             $errors = ["status"=>false,"error"=>$validator->errors()];
-            \NazmulIslam\Utility\Utility\Logger\Logger::error('Pagination valaidtion error',['uri'=>$request->getUri(),'inputs'=>$input,'validation_error'=>$errors]);
+            \NazmulIslam\Utility\Logger\Logger::error('Pagination valaidtion error',['uri'=>$request->getUri(),'inputs'=>$input,'validation_error'=>$errors]);
             return $this->returnErrors($errors);
         }
         return $handler->handle($request);

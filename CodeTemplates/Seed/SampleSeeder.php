@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Phinx\Seed\AbstractSeed;
-use NazmulIslam\Utility\Utility\Utility;
+use NazmulIslam\Utility\Utility;
 use Faker\Factory;
 
 class [ClassName]Seeder extends AbstractSeed

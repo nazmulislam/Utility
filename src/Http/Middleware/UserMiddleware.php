@@ -50,8 +50,8 @@ class UserMiddleware
                     $allowedOriginUrls = explode(',', ALLOWED_CLIENT_URLS);
 
                     if (!in_array($payload->iss, $allowedOriginUrls)) {
-                        // \NazmulIslam\Utility\Utility\Logger\Logger::debug('not valid issuer', [$payload->iss, 'allowed_urls' => ALLOWED_CLIENT_URLS]);
-                        // \NazmulIslam\Utility\Utility\Logger\Logger::debug('ILLEGAL_TOKEN_ISSUER', []);
+                        // \NazmulIslam\Utility\Logger\Logger::debug('not valid issuer', [$payload->iss, 'allowed_urls' => ALLOWED_CLIENT_URLS]);
+                        // \NazmulIslam\Utility\Logger\Logger::debug('ILLEGAL_TOKEN_ISSUER', []);
 
                         return self::jsonResponse($response, ['error' => 'ILLEGAL_TOKEN_ISSUER'], 401);
                     }

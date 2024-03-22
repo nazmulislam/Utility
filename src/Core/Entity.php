@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace NazmulIslam\Utility\Core;
 
-use NazmulIslam\Utility\Utility\Cache\CacheFiles;
+use NazmulIslam\Utility\Cache\CacheFiles;
 use NazmulIslam\Utility\Logger\Logger;
 
 /**

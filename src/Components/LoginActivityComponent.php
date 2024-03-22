@@ -10,10 +10,10 @@ use NazmulIslam\Utility\Models\NazmulIslam\Utility\User;
 use NazmulIslam\Utility\Models\NazmulIslam\Utility\UserBruteForceAttempt;
 use NazmulIslam\Utility\Models\NazmulIslam\Utility\UserLockedAccount;
 use NazmulIslam\Utility\Models\NazmulIslam\Utility\UserLoginHistory;
-use NazmulIslam\Utility\Utility\Email\EmailTemplate;
+use NazmulIslam\Utility\Email\EmailTemplate;
 use Carbon\Carbon;
-use NazmulIslam\Utility\Utility\GEOIP\GEOIP;
-use NazmulIslam\Utility\Utility\Queue\Queue;
+use NazmulIslam\Utility\GEOIP\GEOIP;
+use NazmulIslam\Utility\Queue\Queue;
 
 class LoginActivityComponent extends BaseComponent
 {
@@ -268,10 +268,10 @@ class LoginActivityComponent extends BaseComponent
         if (!$this->failedLoginAttempts(5)) {
             $this->score += 50;
         }
-        $this->browser = \NazmulIslam\Utility\Utility\Browser\Browser::getBrowserFromUserAgent($_SERVER);
+        $this->browser = \NazmulIslam\Utility\Browser\Browser::getBrowserFromUserAgent($_SERVER);
         if (!$this->isSameBrowser($this->browser['browser'])) {
             $this->score += 10;
         }
-        \NazmulIslam\Utility\Utility\Logger\Logger::debug('score', [$this->score]);
+        \NazmulIslam\Utility\Logger\Logger::debug('score', [$this->score]);
     }
 }

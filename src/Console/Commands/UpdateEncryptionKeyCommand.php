@@ -13,7 +13,7 @@ use NazmulIslam\Utility\Console\Traits\CommonTraits;
 use NazmulIslam\Utility\Core\CipherSweetEncryption\EncryptModel;
 use NazmulIslam\Utility\Core\CipherSweetEncryption\Methods;
 use NazmulIslam\Utility\Logger\Logger;
-use NazmulIslam\Utility\Utility\Utility;
+use NazmulIslam\Utility\Utility;
 use ParagonIE\ConstantTime\Hex;
 
 /**

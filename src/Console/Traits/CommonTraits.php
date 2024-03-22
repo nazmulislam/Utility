@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace NazmulIslam\Utility\Console\Traits;
 
-use NazmulIslam\Utility\Utility\File\File;
-use NazmulIslam\Utility\Utility\Text\Text;
+use NazmulIslam\Utility\File\File;
+use NazmulIslam\Utility\Text\Text;
 use Carbon\Carbon;
 use Illuminate\Database\Capsule\Manager as DB;
 

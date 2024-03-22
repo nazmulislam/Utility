@@ -35,7 +35,7 @@ class WriteModelEncryptionLogic
         } catch (\Exception $ex) {
 
             Logger::error('Cauaght Exception error  on ' . gethostname() . ' ' . $ex->getMessage(), (array) $ex->getTraceAsString());
-            \Resque_Event::trigger('onFailure', [$ex->getMessage(), (array) $ex->getTraceAsString()]);
+            
 
             Db::connection('app')->rollBack();
         }

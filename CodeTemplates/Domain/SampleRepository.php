@@ -9,7 +9,7 @@ use NazmulIslam\Utility\Core\Entity;
 use NazmulIslam\Utility\Models\NazmulIslam\Utility\[ModelName];
 use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]CacheKeys;
 use NazmulIslam\Utility\Core\Traits\PaginateTrait;
-use NazmulIslam\Utility\Utility\Utility;
+use NazmulIslam\Utility\Utility;
 
 class [ClassName]Repository extends Entity implements RepositoryInterface
 {
