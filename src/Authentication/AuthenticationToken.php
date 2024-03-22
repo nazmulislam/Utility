@@ -18,7 +18,16 @@ class AuthenticationToken
      * Generates a new access token if refresh token is still valid else
      * if refresh token is invalid then they are effectively logged out.
      */
-    public function createExpireToken(string $accessTokenExpiryTime)
+    public function createAccessTokenExpiryDate(string $accessTokenExpiryTime)
+    {
+        $issuedAt = date_create();
+
+
+        date_add($issuedAt, date_interval_create_from_date_string($accessTokenExpiryTime));
+        return date_timestamp_get($issuedAt);
+    }
+
+    public function createRefreshTokenExpiryDate(string $accessTokenExpiryTime)
     {
         $issuedAt = date_create();
 
