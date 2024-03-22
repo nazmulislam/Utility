@@ -3,7 +3,6 @@ declare(strict_types=1);
 namespace NazmulIslam\Utility\Core;
 
 use NazmulIslam\Utility\Cache\CacheFiles;
-use NazmulIslam\Utility\Logger\Logger;
 
 /**
  * Description of Entity
@@ -19,7 +18,7 @@ abstract class Entity
     {
         global $objFilesCache;
         $this->cacheIsEnabled = intval(ENABLE_SQL_CACHE) === 1 ? true : false;
-        $objFilesCache = CacheFiles::getCachedData(CACHE_DRIVER);
+        $objFilesCache = CACHE_DRIVER === 'Files' ? CacheFiles::getCachedDataFromFile() : CacheFiles::getCachedDataFromRedis(host:REDIS_CACHE_HOST,port:REDIS_CACHE_PORT,password:REDIS_CACHE_PASSWORD,database:REDIS_CACHE_DATABASE);
         $this->cache =  $objFilesCache;
     }
 
@@ -27,14 +26,5 @@ abstract class Entity
     {
         $this->cache->deleteItem($cacheKey);
     }
-
-    public function clearCacheByTag(array $tags):void
-    {
-        // foreach($tags as $tag)
-        // {
-        //     $this->cache->deleteItemsByTag($tag);
-        // }
-    }
-
    
 }

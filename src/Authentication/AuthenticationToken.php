@@ -5,18 +5,15 @@ declare(strict_types=1);
 namespace  NazmulIslam\Utility\Authentication;
 
 use Firebase\JWT\JWT;
-use NazmulIslam\Utility\Logger\Logger;
-
 /**
  * Class to handle authentication activities
  * Class Authentication
  * @package NazmulIslam\Utility\Domain\Authentication
  */
-class Authentication
+class AuthenticationToken
 {
 
     private $user;
-
 
     public function setUser($user): void
     {

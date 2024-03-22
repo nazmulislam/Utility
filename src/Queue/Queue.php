@@ -39,21 +39,7 @@ class Queue
                     $args['args']['httpScheme'] = $_SERVER['REQUEST_SCHEME'];
                 }
             }
-            if (!array_key_exists('tenant', $args['args']) && strtolower(php_sapi_name()) !== 'cli') {
-                if (isset($GLOBALS['TENANT'])) {
-                    $args['args']['tenant'] = $GLOBALS['TENANT'];
-                } else {
-                    $headers = \getallheaders();
-                    if (!isset($headers['X-Tenant']) || empty($headers['X-Tenant'])) {
-                        throw new \Exception('Header X-Tenant is set in web request');
-                    }
-
-                    $args['args']['tenant'] = $headers['X-Tenant'] ?? null;
-                }
-            } else if (!array_key_exists('tenant', $args['args']) && strtolower(php_sapi_name()) === 'cli') {
-                throw new \Exception('tenant is not set in args for queue set in CLI');
-            }
-
+            
             //Logger::debug('Logger......', [$args]);
             self::publish(
                 args: $args,
