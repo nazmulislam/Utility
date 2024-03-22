@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Curl;
+namespace NazmulIslam\Utility\Services\Curl;
 
 use Curl\Curl;
 use NazmulIslam\Utility\Logger\Logger;

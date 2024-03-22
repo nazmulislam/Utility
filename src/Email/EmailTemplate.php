@@ -44,7 +44,7 @@ class EmailTemplate
 
     static public function getEmailContentMessageForIdentifier(string $identifier, array $emailObjects): string
     {
-        $EmailTemplate = \App\Models\App\EmailTemplate::select('id', 'template')->where('identifier', $identifier)->first();
+        $EmailTemplate = \NazmulIslam\Utility\Models\NazmulIslam\Utility\EmailTemplate::select('id', 'template')->where('identifier', $identifier)->first();
         if (isset($EmailTemplate) && !empty($EmailTemplate)) {
             /**
              * Covert message variables to actual dynamic values.

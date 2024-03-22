@@ -19,7 +19,7 @@ class EmailTrackingCode
         }
         do {
             $trackingCode = self::uniqueCode($limit);
-        } while (empty($tracking = \NazmulIslam\Utility\Models\NazmulIslam\Utility\EmailTracking::where('tracking_code', '=', $trackingCode)));
+        } while (empty($tracking = EmailTracking::where('tracking_code', '=', $trackingCode)));
 
         return $trackingCode;
     }
@@ -33,7 +33,7 @@ class EmailTrackingCode
     {
         if(isset($args['track_code']) && !empty($args['track_code']))
         {
-            $tracking = \NazmulIslam\Utility\Models\NazmulIslam\Utility\EmailTracking::where('tracking_code',$args['track_code'])->where('status',0)->first();
+            $tracking = EmailTracking::where('tracking_code',$args['track_code'])->where('status',0)->first();
             $tracking->status = 1;
             $tracking->save();
 

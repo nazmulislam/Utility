@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Email;
+namespace NazmulIslam\Utility\Services\Email;
 
 use NazmulIslam\Utility\Logger\Logger;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -44,7 +44,7 @@ class SendEmailService
 
             return self::prepareEmail();
         } catch (\Exception $e) {
-            \App\Utility\Logger\Logger::error('email sending error - exception', [$e->getMessage(), [$e->getTraceAsString()]]);
+            \NazmulIslam\Utility\Utility\Logger\Logger::error('email sending error - exception', [$e->getMessage(), [$e->getTraceAsString()]]);
             echo $e->getMessage(); //Boring error messages from anything else!
             echo $e->getTraceAsString();
             return false;

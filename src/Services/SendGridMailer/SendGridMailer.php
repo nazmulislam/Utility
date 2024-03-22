@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\SendGridMailer;
+namespace NazmulIslam\Utility\Services\SendGridMailer;
 use SendGrid;
 
 class SendGridMailer

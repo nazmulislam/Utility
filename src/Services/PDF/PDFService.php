@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Services\PDF;
+namespace NazmulIslam\Utility\Services\PDF;
 use Slim\Psr7\Stream;
 use NazmulIslam\Utility\Logger\Logger;
 
