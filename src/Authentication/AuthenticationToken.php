@@ -13,13 +13,7 @@ use Firebase\JWT\JWT;
 class AuthenticationToken
 {
 
-    private $user;
-
-    public function setUser($user): void
-    {
-        $this->user = $user;
-    }
-
+ 
     /**
      * Generates a new access token if refresh token is still valid else
      * if refresh token is invalid then they are effectively logged out.
@@ -35,25 +29,20 @@ class AuthenticationToken
     /**
      * Creates the access token
      */
-    public function createAccessToken(int $expiredAt, string $accessTokenSecret): string
+    public function createAccessToken(int $expiredAt, string $accessTokenSecret,array $payload): string
     {
 
-        $issuer =  (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
-        $issuedAt = time();
+        // $issuer =  (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+        // $issuedAt = time();
 
-        //Time until access token expires 15 minutes
-        //$expiredAt = $issuedAt + ($minutes * $seconds);
-        $payload = array(
-            "iss" => $issuer,
-            "iat" => $issuedAt,
-            "exp" => $expiredAt,
-            "userId" => $this->user->user_id,
-
-            "userType" => intval($this->user->user_type),
-            "fullname" => $this->user->first_name . ' ' . $this->user->last_name,
-            "firstname" => $this->user->first_name,
-            "lastname" => $this->user->last_name,
-        );
+        // //Time until access token expires 15 minutes
+        // //$expiredAt = $issuedAt + ($minutes * $seconds);
+        // $payload = [...[
+        //     'iss' => $issuer,
+        //     'iat' => $issuedAt,
+        //     'exp' => $expiredAt,
+            
+        // ],...$data];
 
         $jwt =  JWT::encode($payload, $$accessTokenSecret, 'HS256');
         return $jwt;
@@ -62,24 +51,23 @@ class AuthenticationToken
     /**
      * Creates the refresh token
      */
-    public function createRefreshToken(int $expiredAt, string $refreshTokenSecret): string
+    public function createRefreshToken(string $refreshTokenSecret, array $payload): string
     {
 
-        $issuer = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
-        $issuedAt = time();
-        $payload = array(
-            "iss" => $issuer,
-            "iat" => $issuedAt,
-            "exp" => $expiredAt,
-            "userId" => $this->user->user_id,
-            "tokenVersion" => $this->user->refresh_token_count,
+        // $issuer = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+        // $issuedAt = time();
+        // $payload = [
 
-            "userType" => intval($this->user->user_type),
-            "fullname" => $this->user->first_name . ' ' . $this->user->last_name,
-            "firstname" => $this->user->first_name,
-            "lastname" => $this->user->last_name,
-
-        );
+        //     ...[
+        //         'iss' => $issuer,
+        //     'iat' => $issuedAt,
+        //     'exp' => $expiredAt,
+        //     'userId' => $this->user->user_id,
+        //     'tokenVersion' => $this->user->refresh_token_count,
+        //     ], ...$data
+        // ];
+            
+           
         $jwt =  JWT::encode($payload, $refreshTokenSecret, 'HS256');
         return $jwt;
     }
@@ -90,13 +78,5 @@ class AuthenticationToken
     public function sendRefreshToken()
     {
 
-
-
-        //setcookie(name:'jid',value:$this->createRefreshToken(), expires_or_options:'',path:'/',domain:'',secure:true, httponly:true)
-        //        setcookie('jid',$this->createRefreshToken(), [
-        //           'httponly' => true,
-        //           'secure' => true,
-        //           'SameSite' => 'None' 
-        //        ]);
     }
 }
