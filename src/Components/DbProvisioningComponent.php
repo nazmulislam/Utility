@@ -11,7 +11,7 @@ use NazmulIslam\Utility\Models\NazmulIslam\Utility\Tenant;
 class DbProvisioningComponent {
     //put your code here
     public $tenant;
-    public $defaultSchema = __DIR__.'/../../schema/schema.sql';
+    public $defaultSchema = __DIR__.'/../../../../schema/schema.sql';
     public $vendorEduModel;
    
             
