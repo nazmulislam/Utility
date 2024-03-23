@@ -8,7 +8,7 @@ namespace  NazmulIslam\Utility\Cookie;
 class Cookie
 {
 
-    public function setCookie(string $cookie, int|string|null $value, bool $httponly = true,bool $secure=true, string $sameSite = 'None'): void
+    static public function setCookie(string $cookie, int|string|null $value, bool $httponly = true,bool $secure=true, string $sameSite = 'None'): void
     {
         setcookie($cookie, $value, [
             'httponly' => $httponly,
@@ -16,7 +16,7 @@ class Cookie
             'SameSite' => $sameSite
         ]);
     }
-    public function clearCookie(string $key, bool $httponly = true,bool $secure=true, string $sameSite = 'None'): void
+    static public function clearCookie(string $key, bool $httponly = true,bool $secure=true, string $sameSite = 'None'): void
     {
         setcookie($key, '', [
             'httponly' => $httponly,
