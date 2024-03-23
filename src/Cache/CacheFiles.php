@@ -15,11 +15,11 @@ class CacheFiles implements CacheInterface
 
 
 
-    public static function getCachedDataFromFile()
+    public static function getCachedDataFromFile(string $sqlCacheStorage)
     {
 
         CacheManager::setDefaultConfig(new ConfigurationOption([
-            'path' => __DIR__ . '/../../../../../' . $_ENV['SQL_CACHE_STORAGE'],
+            'path' => __DIR__ . '/../../../../../' . $sqlCacheStorage,
         ]));
         return CacheManager::getInstance('Files');
     }
@@ -27,10 +27,10 @@ class CacheFiles implements CacheInterface
     {
 
         $redisConfig = new RedisConfig();
-        $redisConfig->setHost((string) $_ENV['REDIS_CACHE_HOST']);
-        $redisConfig->setPort((int) $_ENV['REDIS_CACHE_PORT']);
-        $redisConfig->setPassword((string) $_ENV['REDIS_CACHE_PASSWORD']);
-        $redisConfig->setDatabase((int) $_ENV['REDIS_CACHE_DATABASE']);
+        $redisConfig->setHost($host);
+        $redisConfig->setPort($port);
+        $redisConfig->setPassword($password);
+        $redisConfig->setDatabase((int) $database);
         return CacheManager::getInstance('Redis', $redisConfig);
     }
 }

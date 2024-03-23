@@ -11,6 +11,6 @@ namespace NazmulIslam\Utility\Cache;
 interface CacheInterface
 {
 
-    public static function getCachedDataFromFile();
+    public static function getCachedDataFromFile(string $sqlCacheStorage);
     public static function getCachedDataFromRedis(string $host, int $port, string $password, int $database = 0);
 }
