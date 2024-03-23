@@ -8,7 +8,7 @@ namespace  NazmulIslam\Utility\Cookie;
 class Cookie
 {
 
-    public function setCookie(string $cookie, int|string $value, bool $httponly = true,bool $secure=true, string $sameSite = 'None'): void
+    public function setCookie(string $cookie, int|string|null $value, bool $httponly = true,bool $secure=true, string $sameSite = 'None'): void
     {
         setcookie($cookie, $value, [
             'httponly' => $httponly,
