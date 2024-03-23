@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace NazmulIslam\Utility\Http\Middleware;
 
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
+use NazmulIslam\Utility\Authentication\AuthenticationJWTToken;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response;
 use NazmulIslam\Utility\Logger\Logger;
+use NazmulIslam\Utility\Core\Traits\AuthMiddlewareTrait;
 
 /**
  * Authenticates a logged in user.
@@ -19,8 +19,9 @@ use NazmulIslam\Utility\Logger\Logger;
 class AuthMiddleware
 {
   use ResponseTrait;
+  use AuthMiddlewareTrait;
   /**
-   * TODO need to implement JWT validation
+   * 
    * Checks if the users access token is valid and stores user in request
    * @param Request $request
    * @param RequestHandler $handler
@@ -65,23 +66,21 @@ class AuthMiddleware
       Logger::debug('TOKEN_DOES_EXIST_IN_HEADER : getHeader', []);
       return self::jsonResponse($response, ['error' => 'TOKEN_DOES_EXIST_IN_HEADER'], 401);
     }
-    $explodedAuthorization = explode(" ", $authorization);
-    //get payload
-    $jwt = isset($explodedAuthorization[1]) ? $explodedAuthorization[1] : null;
-    if (empty($jwt)) {
-      return self::jsonResponse($response, ['error' => 'ILLEGAL_TOKEN_ISSUER'], 401);
-    }
+
+
     try {
-      $payload = JWT::decode($jwt, new Key(ACCESS_TOKEN_SECRET, 'HS256'));
+
+      $explodedAuthorization = explode(" ", $authorization);
+      //get payload
+      $jwt = isset($explodedAuthorization[1]) ? $explodedAuthorization[1] : null;
+      if (empty($jwt)) {
+        return self::jsonResponse($response, ['error' => 'ILLEGAL_TOKEN_ISSUER'], 401);
+      }
+      $payload = AuthenticationJWTToken::decodeJWTToken(token: $jwt, tokenSecret: ACCESS_TOKEN_SECRET);
 
 
 
-
-      $allowedOriginUrls = explode(',', ALLOWED_CLIENT_URLS);
-
-      if (!in_array($payload->iss, $allowedOriginUrls)) {
-        Logger::error('not valid issuer', [$payload->iss, 'allowed_urls' => ALLOWED_CLIENT_URLS]);
-        Logger::error('ILLEGAL_TOKEN_ISSUER', []);
+      if ($this->checkifAllowedOriginUrlIsValid(issuer: $payload->iss, allowedClientUrls: ALLOWED_CLIENT_URLS) === false) {
 
         return self::jsonResponse($response, ['message' => 'ILLEGAL_TOKEN_ISSUER'], 401);
       }

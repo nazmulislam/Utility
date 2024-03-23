@@ -9,13 +9,14 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Routing\RouteContext;
 use Slim\Psr7\Response;
+use NazmulIslam\Utility\Core\Traits\AuthMiddlewareTrait;
 
 
 class CorsMiddleware
 {
 
     use ResponseTrait;
-
+    use AuthMiddlewareTrait;
     public function __invoke(Request $request, RequestHandler $handler)
     {
 
@@ -26,12 +27,12 @@ class CorsMiddleware
 
         if (strtolower(CORS_ALLOW_ALL) === 'false') {
             $remoteUrl = isset($headers['Origin'][0]) ? trim($headers['Origin'][0]) : trim($headers['Host'][0]);
-            $allowedOriginUrls = explode(',', ALLOWED_CLIENT_URLS);
 
-            if (!in_array($remoteUrl, $allowedOriginUrls)) {
+
+
+            if ($this->checkifAllowedOriginUrlIsValid($remoteUrl, ALLOWED_CLIENT_URLS) === false) {
                 $response = new Response();
                 Logger::debug($_SERVER['REMOTE_ADDR'] ?? ' ' . 'notInAllowedList', [$remoteUrl]);
-
                 exit(0);
             }
         } else {
