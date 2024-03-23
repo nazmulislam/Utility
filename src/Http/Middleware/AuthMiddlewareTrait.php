@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NazmulIslam\Utility\Core\Traits;
-
-use NazmulIslam\Utility\Logger\Logger;
-
+namespace NazmulIslam\Utility\Http\Middleware;
 trait AuthMiddlewareTrait
 {
     private function checkifAllowedOriginUrlIsValid(string $issuer, string $allowedClientUrls): bool

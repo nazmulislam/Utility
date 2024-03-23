@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Routing\RouteContext;
 use Slim\Psr7\Response;
-use NazmulIslam\Utility\Core\Traits\AuthMiddlewareTrait;
+use NazmulIslam\Utility\Http\Middleware\AuthMiddlewareTrait;
 
 
 class CorsMiddleware
