@@ -42,15 +42,16 @@ class StringEncryption implements StringEncryptionInterface
      */
     private $hash = 'sha256';
 
-    public function __construct(string $encryptionType, string $encryptionSecretKey, string $encryptionIV)
+    public function __construct()
     {
-        $this->encryptionMethod = $encryptionType;
-        $this->secretKey = $encryptionSecretKey;
-        $this->secretIV = $encryptionIV;
+        $this->encryptionMethod = ENCRYPTION_TYPE;
+        $this->secretKey = ENCRYPTION_SECRET_KEY;
+        $this->secretIV = ENCRYPTION_IV;
 
         $this->hashKey = hash($this->hash, $this->secretKey);
         $this->IV = substr(hash($this->hash, $this->secretIV), 0, 16);
     }
+
 
     /**
      * simple method to encrypt a plain text string
