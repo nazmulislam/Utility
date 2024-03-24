@@ -114,16 +114,16 @@ trait CommonTraits
     {
         $ucFirstDomainName = Text::pascalCase($domainName);
 
-        if (!file_exists(__DIR__ . '/../../../src/Models/App/' . $ucFirstDomainName . '.php')) {
+        if (!file_exists(__DIR__ . '/../../../../../../src/Models/App/' . $ucFirstDomainName . '.php')) {
 
-            copy(__DIR__ . '/../../../CodeTemplates/Model/Sample.php', __DIR__ . '/../../../src/Models/App/' . $ucFirstDomainName . '.php');
+            copy(__DIR__ . '/../../../../../../CodeTemplates/Model/Sample.php', __DIR__ . '/../../../../../../src/Models/App/' . $ucFirstDomainName . '.php');
             //read the entire string
-            $fileContent = file_get_contents(__DIR__ . '/../../../src/Models/App/' . $ucFirstDomainName . '.php');
+            $fileContent = file_get_contents(__DIR__ . '/../../../../../../src/Models/App/' . $ucFirstDomainName . '.php');
 
             $str = str_replace($this->findText, $this->replaceText, $fileContent);
 
             //write the entire string
-            file_put_contents(__DIR__ . '/../../../src/Models/App/' . $ucFirstDomainName . '.php', $str);
+            file_put_contents(__DIR__ . '/../../../../../../src/Models/App/' . $ucFirstDomainName . '.php', $str);
 
             return 0;
         } else {
@@ -135,12 +135,12 @@ trait CommonTraits
     public function copyRouteTemplateFiles(string $domainName): int
     {
 
-        $sampleSource = __DIR__ . '/../../../CodeTemplates/Route/sample.php';
-        $destinationPath = __DIR__ . '/../../../src/routes/app/' . Text::camelCase($domainName) . '/' . strtolower(Text::pascalCase($domainName)) . '.php';
+        $sampleSource = __DIR__ . '/../../../../../../CodeTemplates/Route/sample.php';
+        $destinationPath = __DIR__ . '/../../../../../../src/routes/app/' . Text::camelCase($domainName) . '/' . strtolower(Text::pascalCase($domainName)) . '.php';
         if (!file_exists($destinationPath)) {
 
-            if (!file_exists(__DIR__ . '/../../../src/routes/app/' . Text::camelCase($domainName))) {
-                mkdir(__DIR__ . '/../../../src/routes/app/' . Text::camelCase($domainName), 0755, true);
+            if (!file_exists(__DIR__ . '/../../../../../../src/routes/app/' . Text::camelCase($domainName))) {
+                mkdir(__DIR__ . '/../../../../../../src/routes/app/' . Text::camelCase($domainName), 0755, true);
             }
             copy($sampleSource, $destinationPath);
             //read the entire string
@@ -152,7 +152,7 @@ trait CommonTraits
             //write the entire string
             file_put_contents($destinationPath, $str);
 
-            $routeFileContent = file_get_contents(__DIR__ . '/../../../src/config/routes.php');
+            $routeFileContent = file_get_contents(__DIR__ . '/../../../../../../src/config/routes.php');
 
             $routeFileName = Text::camelCase($domainName) . '/' . strtolower(Text::pascalCase($domainName)) . '.php';
             //
@@ -163,7 +163,7 @@ trait CommonTraits
                 '/** INSERT AFTER HOOK */' . PHP_EOL . 'require_once(__DIR__ . \'/../routes/app/' . $routeFileName . '\');',
             ];
             $new_contents = str_replace($find, $text, $routeFileContent);
-            file_put_contents(__DIR__ . '/../../../src/config/routes.php', $new_contents);
+            file_put_contents(__DIR__ . '/../../../../../../src/config/routes.php', $new_contents);
 
             return 0;
         } else {
@@ -184,11 +184,11 @@ trait CommonTraits
 
         $phinx_file_name = $year . $month . $day . $hour . $minute . $second . '_add_table_' . \strtolower(Text::snakeCase($domainName));
 
-        $sampleSource = __DIR__ . '/../../../CodeTemplates/Phinx/PHINX_FILE_NAME.php';
-        $destinationPath = __DIR__ . '/../../../database/migrations/' . $phinx_file_name . '.php';
+        $sampleSource = __DIR__ . '/../../../../../../CodeTemplates/Phinx/PHINX_FILE_NAME.php';
+        $destinationPath = __DIR__ . '/../../../../../../database/migrations/' . $phinx_file_name . '.php';
         if (!file_exists($destinationPath)) {
 
-            if (!file_exists(__DIR__ . '/../../../database/migrations/' . $phinx_file_name)) {
+            if (!file_exists(__DIR__ . '/../../../../../../database/migrations/' . $phinx_file_name)) {
             }
             copy($sampleSource, $destinationPath);
             //read the entire string
@@ -210,8 +210,8 @@ trait CommonTraits
     {
 
         $ucFirstDomainName = Text::pascalCase($domainName);
-        $sampleSource = __DIR__ . '/../../../CodeTemplates/Values/RbacValues.php';
-        $destinationPath = __DIR__ . '/../../../src/Values/Modules/' . $ucFirstDomainName . 'Values.php';
+        $sampleSource = __DIR__ . '/../../../../../../CodeTemplates/Values/RbacValues.php';
+        $destinationPath = __DIR__ . '/../../../../../../src/Values/Modules/' . $ucFirstDomainName . 'Values.php';
         if (!file_exists($destinationPath)) {
 
 
@@ -226,18 +226,18 @@ trait CommonTraits
 
             //Logic
 
-            $moduleValueFileContent = file_get_contents(__DIR__ . '/../../../src/Values/ModuleValues.php');
+            $moduleValueFileContent = file_get_contents(__DIR__ . '/../../../../../../src/Values/ModuleValues.php');
 
             $find = [
-                'namespace NazmulIslam\Utility\Values;',
+                'namespace App\Values;',
                 'const MODULES = ['
             ];
             $text = [
-                'namespace NazmulIslam\Utility\Values;' . PHP_EOL . 'use NazmulIslam\Utility\Values\Modules\\' . $ucFirstDomainName . 'Values;',
+                'namespace App\Values;' . PHP_EOL . 'use App\Values\Modules\\' . $ucFirstDomainName . 'Values;',
                 'const MODULES = [' . PHP_EOL . '...[' . $ucFirstDomainName . 'Values::MODULE],'
             ];
             $new_contents = str_replace($find, $text, $moduleValueFileContent);
-            file_put_contents(__DIR__ . '/../../../src/Values/ModuleValues.php', $new_contents);
+            file_put_contents(__DIR__ . '/../../../../../../src/Values/ModuleValues.php', $new_contents);
             return 0;
         } else {
 
@@ -249,9 +249,9 @@ trait CommonTraits
     {
         $ucFirstDomainName = Text::pascalCase($domainName);
 
-        $this->copyTemplateFolder(__DIR__ . '/../../../CodeTemplates/UnitTest/Domain', __DIR__ . '/../../../tests/Api/Domain/' . $ucFirstDomainName, 'Sample', $ucFirstDomainName);
+        $this->copyTemplateFolder(__DIR__ . '/../../../../../../CodeTemplates/UnitTest/Domain', __DIR__ . '/../../../../../../tests/Api/Domain/' . $ucFirstDomainName, 'Sample', $ucFirstDomainName);
 
-        $files = File::getAllDirectoryDocuments(__DIR__ . '/../../../tests/Api/Domain/' . $ucFirstDomainName);
+        $files = File::getAllDirectoryDocuments(__DIR__ . '/../../../../../../tests/Api/Domain/' . $ucFirstDomainName);
         if (isset($files) && count($files) > 0) {
             foreach ($files as $filePath) {
 
@@ -266,9 +266,9 @@ trait CommonTraits
         }
 
         // copy smoke test
-        $this->copyTemplateFolder(__DIR__ . '/../../../CodeTemplates/UnitTest/Smoke', __DIR__ . '/../../../tests/Api/Smoke/', 'Sample', $ucFirstDomainName);
+        $this->copyTemplateFolder(__DIR__ . '/../../../../../../CodeTemplates/UnitTest/Smoke', __DIR__ . '/../../../../../../tests/Api/Smoke/', 'Sample', $ucFirstDomainName);
 
-        $file = __DIR__ . '/../../../tests/Api/Smoke/' . $ucFirstDomainName . 'SmokeTest.php';
+        $file = __DIR__ . '/../../../../../../tests/Api/Smoke/' . $ucFirstDomainName . 'SmokeTest.php';
         if (file_exists($file)) {
             //read the entire string
             $fileContent = file_get_contents($file);
@@ -290,10 +290,10 @@ trait CommonTraits
 
 
         // copy smoke test
-        $this->copyTemplateFolder(__DIR__ . '/../../../CodeTemplates/Seed', __DIR__ . '/../../../database/seeds/', 'Sample', $ucFirstDomainName);
+        $this->copyTemplateFolder(__DIR__ . '/../../../../../../CodeTemplates/Seed', __DIR__ . '/../../../../../../database/seeds/', 'Sample', $ucFirstDomainName);
 
-        if (file_exists(__DIR__ . '/../../../database/seeds/' . $ucFirstDomainName . 'Seeder.php')) {
-            $file = __DIR__ . '/../../../database/seeds/' . $ucFirstDomainName . 'Seeder.php';
+        if (file_exists(__DIR__ . '/../../../../../../database/seeds/' . $ucFirstDomainName . 'Seeder.php')) {
+            $file = __DIR__ . '/../../../../../../database/seeds/' . $ucFirstDomainName . 'Seeder.php';
             //read the entire string
             $fileContent = file_get_contents($file);
 
@@ -311,12 +311,12 @@ trait CommonTraits
     {
         $ucFirstDomainName = Text::pascalCase($domainName);
 
-        if (!file_exists(__DIR__ . '/../../../src/Domain/' . $ucFirstDomainName)) {
+        if (!file_exists(__DIR__ . '/../../../../../../src/Domain/' . $ucFirstDomainName)) {
 
-            mkdir(__DIR__ . '/../../../src/Domain/' . $ucFirstDomainName, 0755, true);
-            $this->copyTemplateFolder(__DIR__ . '/../../../CodeTemplates/Domain', __DIR__ . '/../../../src/Domain/' . $ucFirstDomainName, 'Sample', $ucFirstDomainName);
+            mkdir(__DIR__ . '/../../../../../../src/Domain/' . $ucFirstDomainName, 0755, true);
+            $this->copyTemplateFolder(__DIR__ . '/../../../../../../CodeTemplates/Domain', __DIR__ . '/../../../../../../src/Domain/' . $ucFirstDomainName, 'Sample', $ucFirstDomainName);
 
-            $files = File::getAllDirectoryDocuments(__DIR__ . '/../../../src/Domain/' . $ucFirstDomainName);
+            $files = File::getAllDirectoryDocuments(__DIR__ . '/../../../../../../src/Domain/' . $ucFirstDomainName);
             if (isset($files) && count($files) > 0) {
                 foreach ($files as $filePath) {
 

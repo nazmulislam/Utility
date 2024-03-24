@@ -36,7 +36,7 @@ class ConfigureModelEncryptionCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-    
+
         $database = $input->getArgument(name: 'db');
 
         if ($database == 'tenant') {
@@ -52,29 +52,29 @@ class ConfigureModelEncryptionCommand extends Command
     private function runForEveryTenant($output)
     {
 
-       
-
-       
-            $this->setupTenantDB();
-
-            //$currCipherSweetKey = Utility::tenantEncryptionKey($tenant['tenant_account_name']) ?? CIPHER_SWEET_KEY;
-            $currCipherSweetKey =  CIPHER_SWEET_KEY;
-
-            DB::connection('app')->beginTransaction();
-
-            try {
-                $this->updateModels($output, $currCipherSweetKey);
-
-                DB::connection('app')->commit();
-            } catch (\Exception $ex) {
-                Logger::error('Cauaght Exception error  on ' . gethostname() . ' ' . $ex->getMessage(), (array) $ex->getTraceAsString());
-                \Resque_Event::trigger('onFailure', [$ex->getMessage(), (array) $ex->getTraceAsString()]);
-
-                Db::connection('app')->rollBack();
-            }
 
 
-            $output->writeln('encryption successful for database ');
+
+        $this->setupTenantDB();
+
+        //$currCipherSweetKey = Utility::tenantEncryptionKey($tenant['tenant_account_name']) ?? CIPHER_SWEET_KEY;
+        $currCipherSweetKey =  CIPHER_SWEET_KEY;
+
+        DB::connection('app')->beginTransaction();
+
+        try {
+            $this->updateModels($output, $currCipherSweetKey);
+
+            DB::connection('app')->commit();
+        } catch (\Exception $ex) {
+            Logger::error('Cauaght Exception error  on ' . gethostname() . ' ' . $ex->getMessage(), (array) $ex->getTraceAsString());
+
+
+            Db::connection('app')->rollBack();
+        }
+
+
+        $output->writeln('encryption successful for database ');
     }
 
     private function updateModels($output, $currCipherSweetKey)
@@ -121,10 +121,9 @@ class ConfigureModelEncryptionCommand extends Command
                     ->table('encryption_models')
                     ->where('model_path', $model->model_path)
                     ->update(['is_encrypted' => 1]);
-           
+
 
                 $output->writeln('successfully encrypted model => ' . $model->model_name);
-                
             } else {
                 $output->writeln('no column found to encrypt  model => ' . $model->model_name);
             }

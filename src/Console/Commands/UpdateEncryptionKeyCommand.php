@@ -12,13 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use NazmulIslam\Utility\Console\Traits\CommonTraits;
 use NazmulIslam\Utility\Core\CipherSweetEncryption\EncryptModel;
 use NazmulIslam\Utility\Core\CipherSweetEncryption\Methods;
-use NazmulIslam\Utility\Logger\Logger;
-use NazmulIslam\Utility\Utility;
 use ParagonIE\ConstantTime\Hex;
 
-/**
- * //TODO the relative file paths need to be fixed for installation
- */
 class UpdateEncryptionKeyCommand extends Command
 {
 
@@ -26,11 +21,8 @@ class UpdateEncryptionKeyCommand extends Command
 
     protected $commandName = 'update:encryption-key';
     protected $commandDescription = "Update encryption key for all models which are applicable";
-
     protected function configure()
     {
-
-
         $this
             ->setName($this->commandName)
             ->setDescription($this->commandDescription)
@@ -40,16 +32,10 @@ class UpdateEncryptionKeyCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-
         $oldKey = CIPHER_SWEET_KEY;
-
         $newKey = $this->generateRandomHexKey();
-
         $data = ['old_env_key' => $oldKey];
-
-
         $database = $input->getArgument(name: 'db');
-
         if ($database == 'tenant') {
             $output->writeln('Starting to configure encryption for models');
             $this->runForEveryTenant($output, $oldKey, $newKey, $data);
@@ -168,8 +154,6 @@ class UpdateEncryptionKeyCommand extends Command
 
         // Update the environment variable
     }
-
-
     public function removeTempKeys($output, $tenantIds)
     {
 
@@ -183,26 +167,19 @@ class UpdateEncryptionKeyCommand extends Command
         }
         $output->writeln('Removing temp keys from database');
     }
-
     public function resetEncryption($output, $tenantIds)
     {
 
-        
+        $stringModels = $this->fetchAllEncryptedModels();
+
+        $cipherSweetMethods = new Methods();
+
+        $cipherSweetMethods->resetAllFields($stringModels);
+        $cipherSweetMethods->resetAllBlindIndexes();
 
 
-
-            $stringModels = $this->fetchAllEncryptedModels();
-
-            $cipherSweetMethods = new Methods();
-
-            $cipherSweetMethods->resetAllFields($stringModels);
-            $cipherSweetMethods->resetAllBlindIndexes();
-
-
-            $output->writeln('Resetting data ');
+        $output->writeln('Resetting data ');
     }
-
-
     private function fetchAllEncryptedModels()
     {
         return DB::connection('app')->table('blind_indexes')
@@ -210,7 +187,6 @@ class UpdateEncryptionKeyCommand extends Command
             ->pluck('indexable_type')
             ->toArray();
     }
-
     private function updateEnvironmentVariable($variable, $value)
     {
         $envFilePath = __DIR__ . '/../../../.env';
@@ -240,8 +216,6 @@ class UpdateEncryptionKeyCommand extends Command
         // Write the updated content back to the .env file
         file_put_contents($envFilePath, $updatedEnvContent);
     }
-
-
     private function generateRandomHexKey()
     {
         $keyLength = 32;
@@ -249,8 +223,6 @@ class UpdateEncryptionKeyCommand extends Command
         return Hex::encode($bytes);
         // return bin2hex($bytes);
     }
-
-
     private function updateModels($output, $oldKey, $newKey)
     {
         $systemModels = DB::connection('app')

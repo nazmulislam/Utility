@@ -43,7 +43,7 @@ class WritingEncryptionLogicCommand extends Command
 
         $currCipherSweetKey = CIPHER_SWEET_KEY;
 
-     
+
         $database = $input->getArgument(name: 'db');
 
         if ($database == 'tenant') {
@@ -63,7 +63,7 @@ class WritingEncryptionLogicCommand extends Command
     private function runForEveryTenant($output, $currentKey)
     {
 
-        
+
         // foreach ($tenants->toArray() as $tenant) {
 
         //     putenv(sprintf('%s=%s', 'DB_NAME', $tenant['tenant_db_name']));
@@ -121,7 +121,7 @@ class WritingEncryptionLogicCommand extends Command
                 } catch (\Exception $ex) {
 
                     Logger::error('Cauaght Exception error  on ' . gethostname() . ' ' . $ex->getMessage(), (array) $ex->getTraceAsString());
-                    \Resque_Event::trigger('onFailure', [$ex->getMessage(), (array) $ex->getTraceAsString()]);
+
 
                     $output->writeln('error while writing encryption for model => ' . $model->model_name);
                 }

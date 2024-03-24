@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace NazmulIslam\Utility\Console\Commands;
 
-use Illuminate\Database\Capsule\Manager as DB;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use NazmulIslam\Utility\Console\Traits\CommonTraits;
@@ -28,7 +26,6 @@ class PhinxMigrateCommand extends Command
             ->setName($this->commandName)
             ->setDescription($this->commandDescription)
             ->setHelp('This command allows you to run phinx migrate');
-           
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -44,15 +41,13 @@ class PhinxMigrateCommand extends Command
 
     protected function migrate(InputInterface $input, OutputInterface $output)
     {
-   
-            $loutput = null;
-            $retval = null;
-           
-            exec(PHINX_CLI_PATH . ' migrate', $loutput, $retval);
-            echo "<pre>", print_r($loutput);
-            $output->writeln('migrated DB');
+
+        $loutput = null;
+        $retval = null;
+
+        exec(PHINX_CLI_PATH . ' migrate', $loutput, $retval);
+        echo "<pre>", print_r($loutput);
+        $output->writeln('migrated DB');
         $output->writeln('Migration complete');
     }
-
- 
 }
