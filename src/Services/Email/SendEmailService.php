@@ -32,19 +32,19 @@ class SendEmailService
      *
      * @param array $data
      */
-    public static function sendEmail(array $data, PHPMailer $mailer)
+    public static function sendEmail(array $data)
     {
 
         try {
 
 
-            self::$email = $mailer;
+            self::$email = new PHPMailer(true);
             self::$data = $data;
             self::setVariables();
 
             return self::prepareEmail();
         } catch (\Exception $e) {
-            \NazmulIslam\Utility\Utility\Logger\Logger::error('email sending error - exception', [$e->getMessage(), [$e->getTraceAsString()]]);
+            Logger::error('email sending error - exception', [$e->getMessage(), [$e->getTraceAsString()]]);
             echo $e->getMessage(); //Boring error messages from anything else!
             echo $e->getTraceAsString();
             return false;
@@ -53,15 +53,8 @@ class SendEmailService
 
     public static function setVariables(): void
     {
-        Logger::debug('APP_EMAIL_FROM_EMAIL', [$_ENV['APP_EMAIL_FROM_EMAIL']]);
-
-
-        self::$smtpPort =  self::$mailService === 'production' ? intval($_ENV['APP_SMTP_PORT']) :  intval($_ENV['MAILCATCHER_SMTP_PORT']);
-        self::$smtpHost = self::$mailService === 'production' ?  $_ENV['APP_SMTP_HOST'] :  $_ENV['MAILCATCHER_SMTP_HOST'];
-
-
-
-
+        self::$smtpPort =  self::$mailService === 'production' ? intval(APP_SMTP_PORT) :  intval(MAILCATCHER_SMTP_PORT);
+        self::$smtpHost = self::$mailService === 'production' ?  APP_SMTP_HOST :  MAILCATCHER_SMTP_HOST;
 
         self::$subject = isset(self::$data['subject']) ? self::$data['subject'] : '';
 
@@ -81,7 +74,7 @@ class SendEmailService
     private static function setSMTPOptions(): void
     {
         if (self::$mailService === 'production') {
-            if ($_ENV['APP_EMAIL_SMTP_SECURE_REQUIRED'] == 1) {
+            if (intval(APP_EMAIL_SMTP_SECURE_REQUIRED) === 1) {
                 /**
                  * $smtpSecure = For Mail servers such as Adit, which required SMTP secure true.
                  *
