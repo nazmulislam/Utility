@@ -6,9 +6,9 @@ namespace Test\Api\Domain\[DomainFolder];
 
 use \PHPUnit\Framework\TestCase;
 use \Prophecy\PhpUnit\ProphecyTrait;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Repository;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Controller;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Service;
+use App\Domain\[DomainFolder]\[ClassName]Repository;
+use App\Domain\[DomainFolder]\[ClassName]Controller;
+use App\Domain\[DomainFolder]\[ClassName]Service;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;

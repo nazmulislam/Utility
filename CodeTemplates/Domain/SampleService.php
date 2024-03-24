@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace NazmulIslam\Utility\Domain\[DomainFolder];
+namespace App\Domain\[DomainFolder];
 
-use NazmulIslam\Utility\Core\Service;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Repository;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]LogValues;
+use App\Core\Service;
+use App\Domain\[DomainFolder]\[ClassName]Repository;
+use App\Domain\[DomainFolder]\[ClassName]LogValues;
 
 class [ClassName]Service extends Service
 {

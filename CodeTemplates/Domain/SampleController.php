@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace NazmulIslam\Utility\Domain\[DomainFolder];
+namespace App\Domain\[DomainFolder];
 
-use NazmulIslam\Utility\Core\Controller;
+use App\Core\Controller;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Service;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Repository;
+use App\Domain\[DomainFolder]\[ClassName]Service;
+use App\Domain\[DomainFolder]\[ClassName]Repository;
 
 class [ClassName]Controller extends Controller
 {

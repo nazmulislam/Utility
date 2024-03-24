@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Test\Api\Smoke;
 
 use \PHPUnit\Framework\TestCase;
-use NazmulIslam\Utility\Core\Traits\TestSetupTrait;
+use App\Core\Traits\TestSetupTrait;
 use GuzzleHttp\RequestOptions;
 
 class [ClassName]SmokeTest extends TestCase

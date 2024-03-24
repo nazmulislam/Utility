@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
-namespace NazmulIslam\Utility\Models\App;
+namespace App\Models\App;
 
 use Illuminate\Events\Dispatcher;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Observer;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Repository;
+use App\Domain\[DomainFolder]\[ClassName]Observer;
+use App\Domain\[DomainFolder]\[ClassName]Repository;
 
 class [ClassName] extends Model
 {

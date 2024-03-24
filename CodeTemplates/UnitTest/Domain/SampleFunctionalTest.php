@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Test\Api\Domain\[DomainFolder];
 
 use \PHPUnit\Framework\TestCase;
-use NazmulIslam\Utility\Core\Traits\TestSetupTrait;
+use App\Core\Traits\TestSetupTrait;
 use GuzzleHttp\RequestOptions;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Repository;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Controller;
+use App\Domain\[DomainFolder]\[ClassName]Repository;
+use App\Domain\[DomainFolder]\[ClassName]Controller;
 
 class [ClassName]FunctionalTest extends TestCase
 {

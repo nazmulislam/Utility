@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace NazmulIslam\Utility\Domain\[DomainFolder];
+namespace App\Domain\[DomainFolder];
 
-use NazmulIslam\Utility\Core\Interfaces\RepositoryInterface;
-use NazmulIslam\Utility\Core\Entity;
-use NazmulIslam\Utility\Models\NazmulIslam\Utility\[ModelName];
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]CacheKeys;
-use NazmulIslam\Utility\Core\Traits\PaginateTrait;
-use NazmulIslam\Utility\Utility;
+use App\Core\Interfaces\RepositoryInterface;
+use App\Core\Entity;
+use App\Models\App\[ModelName];
+use App\Domain\[DomainFolder]\[ClassName]CacheKeys;
+use App\Core\Traits\PaginateTrait;
+use App\Utility;
 
 class [ClassName]Repository extends Entity implements RepositoryInterface
 {

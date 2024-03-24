@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace NazmulIslam\Utility\Domain\[DomainFolder];
+namespace App\Domain\[DomainFolder];
 
 /*
  * To change this license header, choose License Headers in Project Properties.

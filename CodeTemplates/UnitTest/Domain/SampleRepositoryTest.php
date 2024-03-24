@@ -6,10 +6,10 @@ namespace Test\Api\Domain\[DomainFolder];
 
 use \PHPUnit\Framework\TestCase;
 use \Prophecy\PhpUnit\ProphecyTrait;
-use NazmulIslam\Utility\Core\Traits\TestSetupTrait;
+use App\Core\Traits\TestSetupTrait;
 
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Repository;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]CacheKeys;
+use App\Domain\[DomainFolder]\[ClassName]Repository;
+use App\Domain\[DomainFolder]\[ClassName]CacheKeys;
 
 class [ClassName]RepositoryTest extends TestCase
 {

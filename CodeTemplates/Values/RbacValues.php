@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NazmulIslam\Utility\Values\Modules;
+namespace App\Values\Modules;
 
 /**
  * Description of Departments

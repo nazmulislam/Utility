@@ -6,14 +6,14 @@ namespace Test\Api\Domain\[DomainFolder];
 
 use \PHPUnit\Framework\TestCase;
 use \Prophecy\PhpUnit\ProphecyTrait;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Repository;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]CacheKeys;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Service;
+use App\Domain\[DomainFolder]\[ClassName]Repository;
+use App\Domain\[DomainFolder]\[ClassName]CacheKeys;
+use App\Domain\[DomainFolder]\[ClassName]Service;
 
-use NazmulIslam\Utility\Domain\ActivityLog\ActivityLogService;
-use NazmulIslam\Utility\Domain\ActivityLog\ActivityLogRepository;
+use App\Domain\ActivityLog\ActivityLogService;
+use App\Domain\ActivityLog\ActivityLogRepository;
 use Psr\Container\ContainerInterface;
-use NazmulIslam\Utility\Core\Traits\TestSetupTrait;
+use App\Core\Traits\TestSetupTrait;
 
 class [ClassName]ServiceTest extends TestCase
 {

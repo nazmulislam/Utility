@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace NazmulIslam\Utility\Domain\[DomainFolder];
+namespace App\Domain\[DomainFolder];
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
-use NazmulIslam\Utility\Requests\RequestValidation;
+use App\Requests\RequestValidation;
 use Valitron\Validator;
 
 class [ClassName]RequestValidationMiddleware extends RequestValidation

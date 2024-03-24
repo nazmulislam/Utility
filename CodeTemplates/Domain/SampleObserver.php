@@ -1,11 +1,11 @@
 <?php 
 declare(strict_types=1);
-namespace NazmulIslam\Utility\Domain\Sample;
+namespace App\Domain\Sample;
 
-use NazmulIslam\Utility\Models\NazmulIslam\Utility\Model;
-use NazmulIslam\Utility\Domain\Sample\SampleCacheKeys;
-use NazmulIslam\Utility\Domain\Sample\SampleRepository;
-use NazmulIslam\Utility\GUID\GUID;
+use App\Models\App\Model;
+use App\Domain\Sample\SampleCacheKeys;
+use App\Domain\Sample\SampleRepository;
+use App\GUID\GUID;
 
 
 class SampleObserver {

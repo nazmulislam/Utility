@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
-use NazmulIslam\Utility\Http\Middleware\PaginationRequestValidationMiddleware;
-use NazmulIslam\Utility\Http\Middleware\AuthMiddleware;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]Controller;
-use NazmulIslam\Utility\Domain\[DomainFolder]\[ClassName]RequestValidationMiddleware;
+use App\Http\Middleware\PaginationRequestValidationMiddleware;
+use App\Http\Middleware\AuthMiddleware;
+use App\Domain\[DomainFolder]\[ClassName]Controller;
+use App\Domain\[DomainFolder]\[ClassName]RequestValidationMiddleware;
 
 
 $app->group('/[RouteGroup]', function ($app) {
