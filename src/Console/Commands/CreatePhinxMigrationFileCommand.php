@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use NazmulIslam\Utility\Console\Traits\CommonTraits;
+use NazmulIslam\Utility\Console\Traits\CodeTemplateTraits;
 
 
 /**
@@ -16,7 +16,7 @@ use NazmulIslam\Utility\Console\Traits\CommonTraits;
  */
 class CreatePhinxMigrationFileCommand extends Command {
 
-    use CommonTraits;
+    use CodeTemplateTraits;
 
     protected $commandName = 'create:phinx-file';
     protected $commandDescription = "Create phinx file";

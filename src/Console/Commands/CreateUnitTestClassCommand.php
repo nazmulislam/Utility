@@ -8,14 +8,14 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use NazmulIslam\Utility\Console\Traits\CommonTraits;
+use NazmulIslam\Utility\Console\Traits\CodeTemplateTraits;
 
 /**
  * //TODO the relative file paths need to be fixed for installation
  */
 class CreateUnitTestClassCommand extends Command {
 
-    use CommonTraits;
+    use CodeTemplateTraits;
 
     protected $commandName = 'create:unit-test-class';
     protected $commandDescription = "Create Unit Test File";

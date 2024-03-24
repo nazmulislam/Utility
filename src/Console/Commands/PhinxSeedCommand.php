@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use NazmulIslam\Utility\Console\Traits\CommonTraits;
+use NazmulIslam\Utility\Console\Traits\CodeTemplateTraits;
 
 
 /**
@@ -17,7 +17,7 @@ use NazmulIslam\Utility\Console\Traits\CommonTraits;
 class PhinxSeedCommand extends Command
 {
 
-    use CommonTraits;
+    use CodeTemplateTraits;
 
     protected $commandName = 'run:phinx-seed';
     protected $commandDescription = "Run Phinx seed for a tenant";
