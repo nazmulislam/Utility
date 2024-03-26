@@ -18,7 +18,7 @@ abstract class Entity
     {
         global $objFilesCache;
         $this->cacheIsEnabled = intval(ENABLE_SQL_CACHE) === 1 ? true : false;
-        $objFilesCache = CACHE_DRIVER === 'Files' ? CacheFiles::getCachedDataFromFile() : CacheFiles::getCachedDataFromRedis(host:REDIS_CACHE_HOST,port:REDIS_CACHE_PORT,password:REDIS_CACHE_PASSWORD,database:REDIS_CACHE_DATABASE);
+        $objFilesCache = CACHE_DRIVER === 'Files' ? CacheFiles::getCachedDataFromFile(SQL_CACHE_STORAGE) : CacheFiles::getCachedDataFromRedis(host:REDIS_CACHE_HOST,port:REDIS_CACHE_PORT,password:REDIS_CACHE_PASSWORD,database:REDIS_CACHE_DATABASE);
         $this->cache =  $objFilesCache;
     }
 
